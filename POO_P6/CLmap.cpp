@@ -13,11 +13,11 @@ System::String^ NS_Comp_Mappage::CLmapTB::Insert(void)
 }
 System::String^ NS_Comp_Mappage::CLmapTB::Delete(void)
 {
-	return "";
+	return "DELETE FROM TB_P6 WHERE id = " + this->Id + ";";
 }
 System::String^ NS_Comp_Mappage::CLmapTB::Update(void)
 {
-	return "";
+	return "UPDATE TB_P6 SET nom = '" + this->nom + "', prenom = '" + this->prenom + "' WHERE id = " + this->Id + ";";
 }
 void NS_Comp_Mappage::CLmapTB::setId(int Id)
 {

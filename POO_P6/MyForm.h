@@ -123,6 +123,7 @@ namespace POOP6 {
 			this->btn_update->TabIndex = 4;
 			this->btn_update->Text = L"UPD";
 			this->btn_update->UseVisualStyleBackColor = true;
+		
 			// 
 			// txt_id
 			// 
@@ -182,6 +183,9 @@ namespace POOP6 {
 	{
 		this->oSvc->ajouterUnePersonne(this->txt_nom->Text, this->txt_prenom->Text);
 	}
+
+
+
 	};
 }
 
