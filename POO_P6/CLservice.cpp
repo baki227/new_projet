@@ -1,5 +1,5 @@
 //CLservice.CPP***************************************************************************************
-
+#include <iostream>
 #include "CLservices.h"
 
 NS_Comp_Svc::CLservices::CLservices(void)
@@ -24,3 +24,29 @@ void NS_Comp_Svc::CLservices::ajouterUnePersonne(System::String^ nom, System::St
 
 	this->oCad->actionRows(sql);
 }
+
+void NS_Comp_Svc::CLservices::modifierUnePersonne(System::String^ nom, System::String^ prenom, int id)
+{
+	System::String^ sql;
+	
+	this->oMappTB->setId(id);
+	this->oMappTB->setNom(nom);
+	this->oMappTB->setPrenom(prenom);
+
+	sql = this->oMappTB->Update();
+
+	this->oCad->actionRows(sql);
+}
+
+
+void NS_Comp_Svc::CLservices::deleteUnePersonne(int id)
+{
+	System::String^ sql;
+
+	this->oMappTB->setId(id);
+
+	sql = this->oMappTB->Delete();
+
+	this->oCad->actionRows(sql);
+}
+

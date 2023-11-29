@@ -114,6 +114,7 @@ namespace POOP6 {
 			this->btn_delete->TabIndex = 3;
 			this->btn_delete->Text = L"DEL";
 			this->btn_delete->UseVisualStyleBackColor = true;
+			this->btn_delete->Click += gcnew System::EventHandler(this, &MyForm::btn_delete_Click);
 			// 
 			// btn_update
 			// 
@@ -123,6 +124,7 @@ namespace POOP6 {
 			this->btn_update->TabIndex = 4;
 			this->btn_update->Text = L"UPD";
 			this->btn_update->UseVisualStyleBackColor = true;
+			this->btn_delete->Click += gcnew System::EventHandler(this, &MyForm::btn_update_Click);
 		
 			// 
 			// txt_id
@@ -183,8 +185,18 @@ namespace POOP6 {
 	{
 		this->oSvc->ajouterUnePersonne(this->txt_nom->Text, this->txt_prenom->Text);
 	}
+    private: System::Void btn_delete_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		int id = Convert::ToInt32(this->txt_id->Text);
+		this->oSvc->deleteUnePersonne(id);
+	}
+	private: System::Void btn_update_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		int id = Convert::ToInt32(this->txt_id->Text);
+		this->oSvc->modifierUnePersonne(this->txt_nom->Text, this->txt_prenom->Text, id);
+	}
 
-
+	
 
 	};
 }
