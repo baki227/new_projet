@@ -42,11 +42,8 @@ void NS_Comp_Svc::CLservices::modifierUnePersonne(System::String^ nom, System::S
 void NS_Comp_Svc::CLservices::deleteUnePersonne(int id)
 {
 	System::String^ sql;
-
 	this->oMappTB->setId(id);
-
-	sql = this->oMappTB->Delete();
-
-	this->oCad->actionRows(sql);
+    sql = this->oMappTB->Delete();
+    this->oCad->actionRows(sql);
 }
 
