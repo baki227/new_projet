@@ -52,6 +52,7 @@ namespace POOP6 {
 
 	private: NS_Comp_Svc::CLservices^ oSvc;
 	private: System::Data::DataSet^ oDs;
+	private: System::Windows::Forms::Button^ button1;
 	protected:
 
 	private:
@@ -75,22 +76,26 @@ namespace POOP6 {
 			this->txt_id = (gcnew System::Windows::Forms::TextBox());
 			this->txt_nom = (gcnew System::Windows::Forms::TextBox());
 			this->txt_prenom = (gcnew System::Windows::Forms::TextBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_enr))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// dgv_enr
 			// 
 			this->dgv_enr->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgv_enr->Location = System::Drawing::Point(12, 12);
+			this->dgv_enr->Location = System::Drawing::Point(18, 18);
+			this->dgv_enr->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->dgv_enr->Name = L"dgv_enr";
-			this->dgv_enr->Size = System::Drawing::Size(472, 150);
+			this->dgv_enr->RowHeadersWidth = 62;
+			this->dgv_enr->Size = System::Drawing::Size(708, 231);
 			this->dgv_enr->TabIndex = 0;
 			// 
 			// btn_load
 			// 
-			this->btn_load->Location = System::Drawing::Point(15, 183);
+			this->btn_load->Location = System::Drawing::Point(22, 282);
+			this->btn_load->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_load->Name = L"btn_load";
-			this->btn_load->Size = System::Drawing::Size(75, 129);
+			this->btn_load->Size = System::Drawing::Size(112, 198);
 			this->btn_load->TabIndex = 1;
 			this->btn_load->Text = L"Load DB";
 			this->btn_load->UseVisualStyleBackColor = true;
@@ -98,9 +103,10 @@ namespace POOP6 {
 			// 
 			// btn_insert
 			// 
-			this->btn_insert->Location = System::Drawing::Point(96, 183);
+			this->btn_insert->Location = System::Drawing::Point(144, 282);
+			this->btn_insert->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_insert->Name = L"btn_insert";
-			this->btn_insert->Size = System::Drawing::Size(75, 37);
+			this->btn_insert->Size = System::Drawing::Size(112, 57);
 			this->btn_insert->TabIndex = 2;
 			this->btn_insert->Text = L"INS";
 			this->btn_insert->UseVisualStyleBackColor = true;
@@ -108,51 +114,65 @@ namespace POOP6 {
 			// 
 			// btn_delete
 			// 
-			this->btn_delete->Location = System::Drawing::Point(96, 275);
+			this->btn_delete->Location = System::Drawing::Point(144, 423);
+			this->btn_delete->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_delete->Name = L"btn_delete";
-			this->btn_delete->Size = System::Drawing::Size(75, 37);
+			this->btn_delete->Size = System::Drawing::Size(112, 57);
 			this->btn_delete->TabIndex = 3;
 			this->btn_delete->Text = L"DEL";
 			this->btn_delete->UseVisualStyleBackColor = true;
-			this->btn_delete->Click += gcnew System::EventHandler(this, &MyForm::btn_delete_Click);
+			this->btn_delete->Click += gcnew System::EventHandler(this, &MyForm::btn_update_Click);
 			// 
 			// btn_update
 			// 
-			this->btn_update->Location = System::Drawing::Point(96, 229);
+			this->btn_update->Location = System::Drawing::Point(144, 352);
+			this->btn_update->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_update->Name = L"btn_update";
-			this->btn_update->Size = System::Drawing::Size(75, 37);
+			this->btn_update->Size = System::Drawing::Size(112, 57);
 			this->btn_update->TabIndex = 4;
 			this->btn_update->Text = L"UPD";
 			this->btn_update->UseVisualStyleBackColor = true;
-			this->btn_delete->Click += gcnew System::EventHandler(this, &MyForm::btn_update_Click);
-		
 			// 
 			// txt_id
 			// 
-			this->txt_id->Location = System::Drawing::Point(177, 183);
+			this->txt_id->Location = System::Drawing::Point(266, 282);
+			this->txt_id->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->txt_id->Name = L"txt_id";
-			this->txt_id->Size = System::Drawing::Size(307, 20);
+			this->txt_id->Size = System::Drawing::Size(458, 26);
 			this->txt_id->TabIndex = 5;
 			// 
 			// txt_nom
 			// 
-			this->txt_nom->Location = System::Drawing::Point(177, 209);
+			this->txt_nom->Location = System::Drawing::Point(266, 322);
+			this->txt_nom->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->txt_nom->Name = L"txt_nom";
-			this->txt_nom->Size = System::Drawing::Size(307, 20);
+			this->txt_nom->Size = System::Drawing::Size(458, 26);
 			this->txt_nom->TabIndex = 6;
 			// 
 			// txt_prenom
 			// 
-			this->txt_prenom->Location = System::Drawing::Point(177, 238);
+			this->txt_prenom->Location = System::Drawing::Point(266, 366);
+			this->txt_prenom->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->txt_prenom->Name = L"txt_prenom";
-			this->txt_prenom->Size = System::Drawing::Size(307, 20);
+			this->txt_prenom->Size = System::Drawing::Size(458, 26);
 			this->txt_prenom->TabIndex = 7;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(340, 429);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(115, 44);
+			this->button1->TabIndex = 8;
+			this->button1->Text = L"button1";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(506, 332);
+			this->ClientSize = System::Drawing::Size(759, 511);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->txt_prenom);
 			this->Controls->Add(this->txt_nom);
 			this->Controls->Add(this->txt_id);
@@ -161,6 +181,7 @@ namespace POOP6 {
 			this->Controls->Add(this->btn_insert);
 			this->Controls->Add(this->btn_load);
 			this->Controls->Add(this->dgv_enr);
+			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
@@ -198,7 +219,10 @@ namespace POOP6 {
 
 	
 
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	}
+};
 }
 
 

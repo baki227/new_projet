@@ -5,7 +5,7 @@
 
 System::String^ NS_Comp_Mappage::CLmapTB::Select(void)
 {
-	return "SELECT [id], [nom], [prenom] FROM [DB_P6].[dbo].[TB_P6]";
+	return "SELECT [id_tb2], [name], [surname] FROM [DB_P6].[dbo].[TB_2]";
 }
 System::String^ NS_Comp_Mappage::CLmapTB::Insert(void)
 {
@@ -19,18 +19,21 @@ System::String^ NS_Comp_Mappage::CLmapTB::Update(void)
 {
 	return "UPDATE TB_P6 SET nom = '" + this->nom + "', prenom = '" + this->prenom + "' WHERE id = " + this->Id + ";";
 }
-void NS_Comp_Mappage::CLmapTB::setId(int Id)
+void NS_Comp_Mappage::CLmapTB::setId(int id_tb2)
 {
-	this->Id = Id;
+	this->Id = id_tb2;
 }
-void NS_Comp_Mappage::CLmapTB::setNom(System::String^ nom)
+void NS_Comp_Mappage::CLmapTB::setNom(System::String^ name)
 {
-	this->nom = nom;
+	this->nom = name;
 }
-void NS_Comp_Mappage::CLmapTB::setPrenom(System::String^ prenom)
+void NS_Comp_Mappage::CLmapTB::setPrenom(System::String^ surname)
 {
-	this->prenom = prenom;
+	this->prenom = surname;
 }
 int NS_Comp_Mappage::CLmapTB::getId(void) { return this->Id; }
 System::String^ NS_Comp_Mappage::CLmapTB::getNom(void) { return this->nom; }
 System::String^ NS_Comp_Mappage::CLmapTB::getPrenom(void) { return this->prenom; }
+
+
+
