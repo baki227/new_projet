@@ -1,6 +1,9 @@
 #pragma once
 #include <string.h>
-ref class utilisateur{
+
+namespace NS_Comp_MappageUtilisateur
+{
+	ref class utilisateur {
 	private:
 		System::String^ pay_nom;
 		System::String^ uti_dateNaissance;
@@ -17,6 +20,10 @@ ref class utilisateur{
 		int id_Personnel;
 	public:
 		//get
+		System::String^ SelectHumain(void);
+		System::String^ Insert(void);
+		System::String^ Delete(void);
+		System::String^ Update(void);
 		System::String^ get_pay_nom(void);
 		System::String^ get_uti_dateNaissance(void);
 		System::String^ get_uti_prenom(void);
@@ -44,4 +51,5 @@ ref class utilisateur{
 		void set_per_supHerarchique(int);
 		void set_per_dateEmbauche(System::String^);
 		void set_id_Personnel(int);
-};
+	};
+}

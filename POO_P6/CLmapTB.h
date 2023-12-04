@@ -21,4 +21,8 @@ namespace NS_Comp_Mappage
 		System::String^ getNom(void);
 		System::String^ getPrenom(void);
 	};
+
+
+	
+
 }

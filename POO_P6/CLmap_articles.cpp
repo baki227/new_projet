@@ -1,4 +1,4 @@
-#include "articles.h"
+#include "CLmap_articles.h"
 
 int articles::get_Id_Article(void) {
     return this->Id_Article;

@@ -120,11 +120,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="articles.cpp" />
+    <ClCompile Include="CLmap_articles.cpp" />
     <ClCompile Include="CLcad.cpp" />
     <ClCompile Include="CLmap.cpp" />
     <ClCompile Include="CLservice.cpp" />
-    <ClCompile Include="commandes.cpp" />
+    <ClCompile Include="CLmap_commandes.cpp" />
+    <ClCompile Include="CLservices.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="home.cpp" />
     <ClCompile Include="MyFormGestionClient.cpp" />
@@ -132,14 +133,14 @@
     <ClCompile Include="MyFormGestionPersonnel.cpp" />
     <ClCompile Include="MyFormGestionStatistique.cpp" />
     <ClCompile Include="MyFormGestionStock.cpp" />
-    <ClCompile Include="utilisateur.cpp" />
+    <ClCompile Include="CLmap_utilisateur.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="articles.h" />
+    <ClInclude Include="CLmap_articles.h" />
     <ClInclude Include="CLcad.h" />
     <ClInclude Include="CLmapTB.h" />
     <ClInclude Include="CLservices.h" />
-    <ClInclude Include="commandes.h" />
+    <ClInclude Include="CLmap_commandes.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -161,7 +162,7 @@
     <ClInclude Include="MyFormGestionStock.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="utilisateur.h" />
+    <ClInclude Include="CLmap_utilisateur.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

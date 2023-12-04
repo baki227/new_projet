@@ -2,7 +2,9 @@
 #pragma once
 #include "CLmapTB.h"
 #include "CLcad.h"
-
+#include "CLmap_utilisateur.h"
+#include "CLmap_articles.h"
+#include "CLmap_commandes.h"
 namespace NS_Comp_Svc
 {
 	ref class CLservices
@@ -17,4 +19,17 @@ namespace NS_Comp_Svc
 		void modifierUnePersonne(System::String^, System::String^, int);
 		void deleteUnePersonne(int);
 	};
+
+	ref class CLservices_Client
+	{
+	private:
+		NS_Comp_Data::CLcad^ oCad;
+		NS_Comp_MappageUtilisateur::utilisateur^ oMappUtilisateur;
+
+	public:
+		CLservices_Client(void);
+		System::Data::DataSet^ selectionnerTousLesClients(System::String^);
+		
+	};
+
 }

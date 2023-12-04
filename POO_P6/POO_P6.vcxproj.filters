@@ -30,13 +30,13 @@
     <ClCompile Include="home.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="commandes.cpp">
+    <ClCompile Include="CLmap_commandes.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="utilisateur.cpp">
+    <ClCompile Include="CLmap_utilisateur.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="articles.cpp">
+    <ClCompile Include="CLmap_articles.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="MyFormGestionClient.cpp">
@@ -52,6 +52,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="MyFormGestionStatistique.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CLservices.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,13 +74,13 @@
     <ClInclude Include="home.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="articles.h">
+    <ClInclude Include="CLmap_articles.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="commandes.h">
+    <ClInclude Include="CLmap_commandes.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="utilisateur.h">
+    <ClInclude Include="CLmap_utilisateur.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="MyFormGestionPersonnel.h">

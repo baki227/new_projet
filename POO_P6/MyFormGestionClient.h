@@ -1,4 +1,5 @@
 #pragma once
+#include "CLservices.h"
 
 namespace POOP6 {
 
@@ -35,6 +36,9 @@ namespace POOP6 {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: NS_Comp_Svc::CLservices_Client^ oSvc; //oublie pas ------------------------------------
+	private: System::Data::DataSet^ oDs;////oublie pas ------------------------------------
+
 	private: System::Windows::Forms::Button^ button1;
 	protected:
 
@@ -85,6 +89,7 @@ namespace POOP6 {
 			this->Controls->Add(this->dataGridView1);
 			this->Name = L"MyFormGestionClient";
 			this->Text = L"MyFormGestionClient";
+			this->Load += gcnew System::EventHandler(this, &MyFormGestionClient::MyFormGestionClient_Load);//-----------------------------oublie pas ça     c'est pour le requetes
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 
@@ -92,7 +97,14 @@ namespace POOP6 {
 #pragma endregion
 
 	private: System::Void Load_database_Click(System::Object^ sender, System::EventArgs^ e) {
-
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvc->selectionnerTousLesClients("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+	private: System::Void MyFormGestionClient_Load(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->oSvc = gcnew NS_Comp_Svc::CLservices_Client();
 	}
 	};
 }

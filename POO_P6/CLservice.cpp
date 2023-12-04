@@ -47,3 +47,21 @@ void NS_Comp_Svc::CLservices::deleteUnePersonne(int id)
     this->oCad->actionRows(sql);
 }
 
+
+
+//------------------------------------CLIENTS----------------------------------------
+NS_Comp_Svc::CLservices_Client::CLservices_Client(void)
+{
+	this->oCad = gcnew NS_Comp_Data::CLcad();
+	this->oMappUtilisateur = gcnew NS_Comp_MappageUtilisateur::utilisateur();
+
+}
+
+System::Data::DataSet^ NS_Comp_Svc::CLservices_Client::selectionnerTousLesClients(System::String^ dataTableName)
+{
+	System::String^ sql;
+
+	sql = this->oMappUtilisateur->SelectHumain();
+	return this->oCad->getRows(sql, dataTableName);
+
+}
