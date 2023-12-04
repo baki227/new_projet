@@ -89,6 +89,7 @@ namespace POOP6 {
 			this->dgv_enr->RowHeadersWidth = 62;
 			this->dgv_enr->Size = System::Drawing::Size(708, 231);
 			this->dgv_enr->TabIndex = 0;
+			this->dgv_enr->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dgv_enr_CellContentClick);
 			// 
 			// btn_load
 			// 
@@ -222,6 +223,8 @@ namespace POOP6 {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	}
+private: System::Void dgv_enr_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
 };
 }
 

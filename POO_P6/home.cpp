@@ -1,4 +1,4 @@
-#include "MyForm1.h"
+#include "home.h"
 
 
 using namespace System;
@@ -10,6 +10,6 @@ int __clrcall main(array<String^>^ args)
 {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	POOP6::MyForm1 monFormulaire;
+	POOP6::home monFormulaire;
 	Application::Run(% monFormulaire);
 }

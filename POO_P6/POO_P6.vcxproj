@@ -120,29 +120,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="articles.cpp" />
     <ClCompile Include="CLcad.cpp" />
     <ClCompile Include="CLmap.cpp" />
     <ClCompile Include="CLservice.cpp" />
+    <ClCompile Include="commandes.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="MyForm1.cpp" />
+    <ClCompile Include="home.cpp" />
+    <ClCompile Include="MyFormGestionClient.cpp" />
+    <ClCompile Include="MyFormGestionCommandes.cpp" />
+    <ClCompile Include="MyFormGestionPersonnel.cpp" />
+    <ClCompile Include="MyFormGestionStatistique.cpp" />
+    <ClCompile Include="MyFormGestionStock.cpp" />
+    <ClCompile Include="utilisateur.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="articles.h" />
     <ClInclude Include="CLcad.h" />
     <ClInclude Include="CLmapTB.h" />
     <ClInclude Include="CLservices.h" />
+    <ClInclude Include="commandes.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MyForm1.h">
+    <ClInclude Include="home.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="MyFormGestionClient.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MyFormGestionCommandes.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MyFormGestionPersonnel.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MyFormGestionStatistique.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MyFormGestionStock.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="utilisateur.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyForm1.resx">
-      <DependentUpon>MyForm1.h</DependentUpon>
+    <EmbeddedResource Include="home.resx">
+      <DependentUpon>home.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyFormGestionClient.resx">
+      <DependentUpon>MyFormGestionClient.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyFormGestionPersonnel.resx">
+      <DependentUpon>MyFormGestionPersonnel.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyFormGestionStatistique.resx">
+      <DependentUpon>MyFormGestionStatistique.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
