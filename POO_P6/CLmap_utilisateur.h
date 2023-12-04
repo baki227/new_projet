@@ -12,8 +12,10 @@ namespace NS_Comp_MappageUtilisateur
 		System::String^ adr_postalcode;
 		System::String^ adr_num;
 		System::String^ adr_rue;
+		System::String^ adr_type;
 		System::String^ reg_nom;
 		System::String^ cit_nom;
+
 		int Id_Client;
 		int per_supHerarchique;
 		System::String^ per_dateEmbauche;
@@ -30,6 +32,7 @@ namespace NS_Comp_MappageUtilisateur
 		System::String^ get_uti_nom(void);
 		System::String^ get_adr_postalcode(void);
 		System::String^ get_adr_num(void);
+		System::String^ get_adr_type(void);
 		System::String^ get_adr_rue(void);
 		System::String^ get_reg_nom(void);
 		System::String^ get_cit_nom(void);
@@ -46,6 +49,7 @@ namespace NS_Comp_MappageUtilisateur
 		void set_adr_num(System::String^);
 		void set_adr_rue(System::String^);
 		void set_reg_nom(System::String^);
+		void set_adr_type(System::String^);
 		void set_cit_nom(System::String^);
 		void set_Id_Client(int);
 		void set_per_supHerarchique(int);

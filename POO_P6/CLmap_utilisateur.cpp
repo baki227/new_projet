@@ -3,20 +3,23 @@
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::SelectHumain(void)
 {
-return "SELECT [id_humain], [hum_nom], [hum_prenom] FROM [DB_P6].[dbo].[HUMAIN]";
+return "SELECT UTILISATEUR.id_utilisateur AS id_client_utilisateur, UTILISATEUR.uti_nom AS client_nom, UTILISATEUR.uti_prenom AS client_prenom, UTILISATEUR.uti_dateNaissance AS client_dateNaissance, ADRESSE.adr_num, ADRESSE.adr_rue, ADRESSE.adr_postalcode, ADRESSE.adr_type, VILLE.cit_nom AS ville_nom, REGION.reg_name AS region_nom, PAYS.pay_nom AS pays_nom FROM [DB_P6].[dbo].[CLIENTS] JOIN [DB_P6].[dbo].[UTILISATEUR] ON CLIENTS.id_utilisateur = UTILISATEUR.id_utilisateur JOIN [DB_P6].[dbo].[ADRESSE] ON UTILISATEUR.id_utilisateur = ADRESSE.id_ville JOIN [DB_P6].[dbo].[VILLE] ON ADRESSE.id_ville = VILLE.id_ville JOIN [DB_P6].[dbo].[REGION] ON VILLE.ID_REGION = REGION.ID_REGION JOIN [DB_P6].[dbo].[PAYS] ON REGION.ID_PAYS = PAYS.ID_PAYS;";
 
 }
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::Insert(void)
 {
-	throw gcnew System::NotImplementedException();
-	// TODO: insérer une instruction return ici
+	return "INSERT INTO [DB_P6].[dbo].[UTILISATEUR] (uti_nom, uti_prenom, uti_dateNaissance) VALUES ('" + this->uti_nom + "', '" + this->uti_prenom + "', '" + this->uti_dateNaissance + "');\n"
+		+ "INSERT INTO [DB_P6].[dbo].[ADRESSE] (adr_num, adr_rue, adr_postalcode, adr_type, id_ville) VALUES ('" + this->adr_num + "', '" + this->adr_rue + "', '" + this->adr_postalcode + "', '" + this->adr_type + "', [VALUE]);\n"
+		+ "INSERT INTO [DB_P6].[dbo].[VILLE] (cit_nom, ID_REGION) VALUES ('" + this->cit_nom + "', [VALUE]);\n"
+		+ "INSERT INTO [DB_P6].[dbo].[REGION] (reg_name, ID_PAYS) VALUES ('" + this->reg_nom + "', [VALUE]);\n"
+		+ "INSERT INTO [DB_P6].[dbo].[PAYS] (pay_nom) VALUES ('" + this->pay_nom + "');\n"
+		+ "INSERT INTO [DB_P6].[dbo].[CLIENTS] (id_utilisateur) VALUES ([VALUE]);";
 }
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::Delete(void)
 {
-	throw gcnew System::NotImplementedException();
-	// TODO: insérer une instruction return ici
+	return "DELETE FROM [DB_P6].[dbo].[CLIENTS] WHERE Id_Client = " + this->Id_Client + ";";
 }
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::Update(void)
@@ -46,6 +49,9 @@ System::String^ NS_Comp_MappageUtilisateur::utilisateur::get_adr_num(void){
 }
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::get_adr_rue(void){
 	return this->adr_rue;
+}
+System::String^ NS_Comp_MappageUtilisateur::utilisateur::get_adr_type(void) {
+	return this->adr_type;
 }
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::get_reg_nom(void){
 	return this->reg_nom;
@@ -88,6 +94,9 @@ void NS_Comp_MappageUtilisateur::utilisateur::set_adr_num(System::String^ num){
 void NS_Comp_MappageUtilisateur::utilisateur::set_adr_rue(System::String^ rue){
 	this->adr_rue = rue;
 }
+void NS_Comp_MappageUtilisateur::utilisateur::set_adr_type(System::String^ type) {
+	this->adr_type = type;
+}
 void NS_Comp_MappageUtilisateur::utilisateur::set_reg_nom(System::String^ region){
 	this->reg_nom = region;
 }
@@ -106,3 +115,4 @@ void NS_Comp_MappageUtilisateur::utilisateur::set_per_dateEmbauche(System::Strin
 void NS_Comp_MappageUtilisateur::utilisateur::set_id_Personnel(int id){
 	this->id_Personnel = id; 
 }
+

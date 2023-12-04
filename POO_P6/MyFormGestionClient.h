@@ -40,6 +40,8 @@ namespace POOP6 {
 	private: System::Data::DataSet^ oDs;////oublie pas ------------------------------------
 
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::TextBox^ textBox1;
 	protected:
 
 	private:
@@ -57,6 +59,8 @@ namespace POOP6 {
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -80,18 +84,39 @@ namespace POOP6 {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyFormGestionClient::Load_database_Click);
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(237, 302);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(136, 38);
+			this->button2->TabIndex = 2;
+			this->button2->Text = L"Delete Client";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyFormGestionClient::btn_delete_click);
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(512, 308);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(372, 26);
+			this->textBox1->TabIndex = 3;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyFormGestionClient::textBox1_TextChanged);
+			// 
 			// MyFormGestionClient
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(968, 579);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridView1);
 			this->Name = L"MyFormGestionClient";
 			this->Text = L"MyFormGestionClient";
-			this->Load += gcnew System::EventHandler(this, &MyFormGestionClient::MyFormGestionClient_Load);//-----------------------------oublie pas ça     c'est pour le requetes
+			this->Load += gcnew System::EventHandler(this, &MyFormGestionClient::MyFormGestionClient_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -106,5 +131,11 @@ namespace POOP6 {
 	{
 		this->oSvc = gcnew NS_Comp_Svc::CLservices_Client();
 	}
-	};
+	private: System::Void btn_delete_click(System::Object^ sender, System::EventArgs^ e) {
+		int id = Convert::ToInt32(this->textBox1->Text);
+		this->oSvc->deleteUnClient(id);
+	}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+};
 }

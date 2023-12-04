@@ -65,3 +65,11 @@ System::Data::DataSet^ NS_Comp_Svc::CLservices_Client::selectionnerTousLesClient
 	return this->oCad->getRows(sql, dataTableName);
 
 }
+
+void NS_Comp_Svc::CLservices_Client::deleteUnClient(int id)
+{
+	System::String^ sql;
+	this->oMappUtilisateur->set_Id_Client(id);
+	sql = this->oMappUtilisateur->Delete();
+	this->oCad->actionRows(sql);
+}

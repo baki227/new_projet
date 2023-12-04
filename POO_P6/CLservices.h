@@ -29,7 +29,7 @@ namespace NS_Comp_Svc
 	public:
 		CLservices_Client(void);
 		System::Data::DataSet^ selectionnerTousLesClients(System::String^);
-		
+		void deleteUnClient(int);
 	};
 
 }
