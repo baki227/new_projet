@@ -65,6 +65,9 @@ namespace POOP6 {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::ComboBox^ comboBox3;
 	private: System::Windows::Forms::ComboBox^ comboBox4;
+	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
+	private: System::Windows::Forms::TextBox^ textBox5;
+	private: System::Windows::Forms::Label^ label12;
 
 
 	private:
@@ -102,6 +105,9 @@ namespace POOP6 {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
 			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
+			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
+			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -113,7 +119,7 @@ namespace POOP6 {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(390, 107);
+			this->textBox2->Location = System::Drawing::Point(246, 107);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(100, 26);
 			this->textBox2->TabIndex = 1;
@@ -134,7 +140,7 @@ namespace POOP6 {
 			// 
 			// textBox6
 			// 
-			this->textBox6->Location = System::Drawing::Point(255, 107);
+			this->textBox6->Location = System::Drawing::Point(717, 163);
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(100, 26);
 			this->textBox6->TabIndex = 5;
@@ -301,11 +307,41 @@ namespace POOP6 {
 			this->comboBox4->Size = System::Drawing::Size(97, 28);
 			this->comboBox4->TabIndex = 25;
 			// 
+			// dateTimePicker1
+			// 
+			this->dateTimePicker1->CustomFormat = L"dd-MM-yyyy";
+			this->dateTimePicker1->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
+			this->dateTimePicker1->Location = System::Drawing::Point(373, 107);
+			this->dateTimePicker1->Name = L"dateTimePicker1";
+			this->dateTimePicker1->Size = System::Drawing::Size(279, 26);
+			this->dateTimePicker1->TabIndex = 26;
+			this->dateTimePicker1->Value = System::DateTime(2023, 12, 14, 0, 0, 0, 0);
+			// 
+			// textBox5
+			// 
+			this->textBox5->Location = System::Drawing::Point(12, 28);
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->Size = System::Drawing::Size(100, 26);
+			this->textBox5->TabIndex = 27;
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(39, 9);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(26, 20);
+			this->label12->TabIndex = 28;
+			this->label12->Text = L"ID";
+		
+			// 
 			// MyFormUser
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(866, 620);
+			this->Controls->Add(this->label12);
+			this->Controls->Add(this->textBox5);
+			this->Controls->Add(this->dateTimePicker1);
 			this->Controls->Add(this->comboBox4);
 			this->Controls->Add(this->comboBox3);
 			this->Controls->Add(this->button1);
@@ -344,6 +380,7 @@ namespace POOP6 {
 	private: System::Void label8_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void MyFormUser_Load(System::Object^ sender, System::EventArgs^ e) {
+		
 		this->oSvc = gcnew NS_Comp_Svc::CLservices_Client();
 		// Spécifiez le chemin complet de votre fichier texte
 		String^ filePath = "C:\\Users\\WC272\\source\\repos\\POO_P6\\POO_P6\\cities.csv";
@@ -395,9 +432,11 @@ namespace POOP6 {
 
 	}
 	private: System::Void Valider_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->oSvc->insererUnClient(textBox1->Text, textBox2->Text, textBox3->Text, textBox4->Text, textBox6->Text,textBox7->Text, comboBox1->Text, comboBox2->Text, comboBox3->Text, comboBox4->Text);
+		
+		this->oSvc->insererUnClient(textBox1->Text, textBox2->Text, dateTimePicker1->Text, comboBox1->Text, textBox6->Text,textBox7->Text, textBox4->Text, comboBox2->Text, comboBox3->Text, textBox3->Text);
 	}
 private: System::Void comboBox3_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
+
 };
 	}

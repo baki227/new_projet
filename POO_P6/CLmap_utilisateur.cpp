@@ -1,5 +1,7 @@
 #include "CLmap_utilisateur.h"
-
+#include <vcclr.h> // Pour gcnew
+#include <iostream>
+#include <string.h>
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::SelectHumain(void)
 {
@@ -9,13 +11,16 @@ return "SELECT UTILISATEUR.id_utilisateur AS id_client_utilisateur, UTILISATEUR.
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::Insert(void)
 {
-	return "INSERT INTO [DB_P6].[dbo].[UTILISATEUR] (uti_nom, uti_prenom, uti_dateNaissance) VALUES ('" + this->uti_nom + "', '" + this->uti_prenom + "', '" + this->uti_dateNaissance + "');\n"
-		+ "INSERT INTO [DB_P6].[dbo].[ADRESSE] (adr_num, adr_rue, adr_postalcode, adr_type, id_ville) VALUES ('" + this->adr_num + "', '" + this->adr_rue + "', '" + this->adr_postalcode + "', '" + this->adr_type + "', [VALUE]);\n"
-		+ "INSERT INTO [DB_P6].[dbo].[VILLE] (cit_nom, ID_REGION) VALUES ('" + this->cit_nom + "', [VALUE]);\n"
-		+ "INSERT INTO [DB_P6].[dbo].[REGION] (reg_name, ID_PAYS) VALUES ('" + this->reg_nom + "', [VALUE]);\n"
-		+ "INSERT INTO [DB_P6].[dbo].[PAYS] (pay_nom) VALUES ('" + this->pay_nom + "');\n"
-		+ "INSERT INTO [DB_P6].[dbo].[CLIENTS] (id_utilisateur) VALUES ([VALUE]);";
+
+	return "INSERT INTO [DB_P6].[dbo].[UTILISATEUR] (uti_nom, uti_prenom, uti_dateNaissance) VALUES ('" + this->uti_nom + "', '" + this->uti_prenom + "', '" + System::DateTime::ParseExact(this->uti_dateNaissance, "dd-MM-yyyy", System::Globalization::CultureInfo::InvariantCulture).ToString("yyyy-MM-dd") + "');\n"
+		+ "INSERT INTO [DB_P6].[dbo].[ADRESSE] (adr_num, adr_rue, adr_postalcode, adr_type, id_ville) VALUES ('" + this->adr_num + "', '" + this->adr_rue + "', '" + this->adr_postalcode + "', '" + this->adr_type + "', 1);\n"
+		+ "INSERT INTO [DB_P6].[dbo].[VILLE] (cit_nom, ID_REGION) VALUES ('" + this->cit_nom + "', 1);\n"
+		+ "INSERT INTO [DB_P6].[dbo].[REGION] (reg_name, ID_PAYS) VALUES ('" + this->reg_nom + "', 1);\n"
+		+ "INSERT INTO [DB_P6].[dbo].[PAYS] (pay_nom) VALUES ('" + this->pay_nom + "');\n";
+
+
 }
+	
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::Delete(void)
 {

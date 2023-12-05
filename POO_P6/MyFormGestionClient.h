@@ -143,6 +143,7 @@ namespace POOP6 {
 	private: System::Void MyFormGestionClient_Load(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->oSvc = gcnew NS_Comp_Svc::CLservices_Client();
+		
 	}
 	private: System::Void btn_delete_click(System::Object^ sender, System::EventArgs^ e) {
 		int id = Convert::ToInt32(this->textBox1->Text);
