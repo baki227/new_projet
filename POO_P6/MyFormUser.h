@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <fstream>
-
+#include "CLservices.h"
 
 namespace POOP6 {
 
@@ -45,9 +45,10 @@ namespace POOP6 {
 
 	private: System::Windows::Forms::TextBox^ textBox6;
 	private: System::Windows::Forms::TextBox^ textBox7;
-	private: System::Windows::Forms::TextBox^ textBox8;
+	private: NS_Comp_Svc::CLservices_Client^ oSvc; //oublie pas ------------------------------------
+	private: System::Data::DataSet^ oDs;////oublie pas ------------------------------------
 
-	private: System::Windows::Forms::TextBox^ textBox10;
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
@@ -62,6 +63,8 @@ namespace POOP6 {
 	private: System::Windows::Forms::ComboBox^ comboBox1;
 	private: System::Windows::Forms::ComboBox^ comboBox2;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::ComboBox^ comboBox3;
+	private: System::Windows::Forms::ComboBox^ comboBox4;
 
 
 	private:
@@ -83,8 +86,6 @@ namespace POOP6 {
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -99,6 +100,8 @@ namespace POOP6 {
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
+			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -142,20 +145,6 @@ namespace POOP6 {
 			this->textBox7->Name = L"textBox7";
 			this->textBox7->Size = System::Drawing::Size(100, 26);
 			this->textBox7->TabIndex = 6;
-			// 
-			// textBox8
-			// 
-			this->textBox8->Location = System::Drawing::Point(522, 237);
-			this->textBox8->Name = L"textBox8";
-			this->textBox8->Size = System::Drawing::Size(100, 26);
-			this->textBox8->TabIndex = 7;
-			// 
-			// textBox10
-			// 
-			this->textBox10->Location = System::Drawing::Point(428, 377);
-			this->textBox10->Name = L"textBox10";
-			this->textBox10->Size = System::Drawing::Size(100, 26);
-			this->textBox10->TabIndex = 9;
 			// 
 			// label1
 			// 
@@ -295,11 +284,30 @@ namespace POOP6 {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyFormUser::Valider_Click);
 			// 
+			// comboBox3
+			// 
+			this->comboBox3->FormattingEnabled = true;
+			this->comboBox3->Location = System::Drawing::Point(522, 235);
+			this->comboBox3->Name = L"comboBox3";
+			this->comboBox3->Size = System::Drawing::Size(87, 28);
+			this->comboBox3->TabIndex = 24;
+			this->comboBox3->SelectedIndexChanged += gcnew System::EventHandler(this, &MyFormUser::comboBox3_SelectedIndexChanged);
+			// 
+			// comboBox4
+			// 
+			this->comboBox4->FormattingEnabled = true;
+			this->comboBox4->Location = System::Drawing::Point(407, 377);
+			this->comboBox4->Name = L"comboBox4";
+			this->comboBox4->Size = System::Drawing::Size(97, 28);
+			this->comboBox4->TabIndex = 25;
+			// 
 			// MyFormUser
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(866, 620);
+			this->Controls->Add(this->comboBox4);
+			this->Controls->Add(this->comboBox3);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->comboBox2);
 			this->Controls->Add(this->comboBox1);
@@ -314,8 +322,6 @@ namespace POOP6 {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->textBox10);
-			this->Controls->Add(this->textBox8);
 			this->Controls->Add(this->textBox7);
 			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->textBox4);
@@ -338,16 +344,18 @@ namespace POOP6 {
 	private: System::Void label8_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void MyFormUser_Load(System::Object^ sender, System::EventArgs^ e) {
+		this->oSvc = gcnew NS_Comp_Svc::CLservices_Client();
 		// Spécifiez le chemin complet de votre fichier texte
 		String^ filePath = "C:\\Users\\WC272\\source\\repos\\POO_P6\\POO_P6\\cities.csv";
-
+		String^ filePath2 = "C:\\Users\\WC272\\source\\repos\\POO_P6\\POO_P6\\sql-pays.csv";
 
 		try {
 			// Vérifiez que le fichier existe avant de tenter de le lire
 			if (System::IO::File::Exists(filePath)) {
 				// Initialisez la ComboBox
 				comboBox2->Items->Clear();
-
+				comboBox3->Items->Clear();
+				comboBox4->Items->Clear();
 				// Initialisez le StreamReader pour lire le fichier texte
 				System::IO::StreamReader^ reader = gcnew System::IO::StreamReader(filePath);
 
@@ -357,12 +365,14 @@ namespace POOP6 {
 
 					// Divisez la ligne en champs en utilisant la virgule comme délimiteur
 					array<System::String^>^ fields = line->Split(',');
-
+					
 					// Assurez-vous qu'il y a au moins deux champs avant d'essayer d'accéder au deuxième champ
-					if (fields->Length >= 2) {
+					
 						// Ajoutez le deuxième champ (nom de la ville) à la ComboBox
 						comboBox2->Items->Add(fields[1]);
-					}
+						comboBox3->Items->Add(fields[0]);
+						
+					
 				}
 
 				// Fermez le StreamReader
@@ -385,6 +395,9 @@ namespace POOP6 {
 
 	}
 	private: System::Void Valider_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->oSvc->insererUnClient(textBox1->Text, textBox2->Text, textBox3->Text, textBox4->Text, textBox6->Text,textBox7->Text, comboBox1->Text, comboBox2->Text, comboBox3->Text, comboBox4->Text);
 	}
+private: System::Void comboBox3_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 	}

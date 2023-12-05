@@ -73,3 +73,25 @@ void NS_Comp_Svc::CLservices_Client::deleteUnClient(int id)
 	sql = this->oMappUtilisateur->Delete();
 	this->oCad->actionRows(sql);
 }
+
+void NS_Comp_Svc::CLservices_Client::insererUnClient(System::String^ nom, System::String^ prenom, System::String^ dateNaissance , System::String^ numAdresse, System::String^ rueAdresse, System::String^ code_postal, System::String^ typeArdresse, System::String^ ville, System::String^ region, System::String^ pays)
+{
+	System::String^ sql;
+	this->oMappUtilisateur->set_uti_nom(nom);
+	this->oMappUtilisateur->set_uti_prenom(prenom);
+	this->oMappUtilisateur->set_uti_dateNaissance(dateNaissance);
+	this->oMappUtilisateur->set_adr_num(numAdresse);
+	this->oMappUtilisateur->set_adr_rue(rueAdresse);
+	this->oMappUtilisateur->set_adr_postalcode(code_postal);
+	this->oMappUtilisateur->set_adr_type(typeArdresse);
+	this->oMappUtilisateur->set_cit_nom(ville);
+	this->oMappUtilisateur->set_reg_nom(region);
+	this->oMappUtilisateur->set_pay_nom(pays);
+	sql = this->oMappUtilisateur->Insert();
+	this->oCad->actionRows(sql);
+}
+
+void NS_Comp_Svc::CLservices_Client::modifierUnClient(int, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^)
+{
+	throw gcnew System::NotImplementedException();
+}

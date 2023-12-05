@@ -30,6 +30,8 @@ namespace NS_Comp_Svc
 		CLservices_Client(void);
 		System::Data::DataSet^ selectionnerTousLesClients(System::String^);
 		void deleteUnClient(int);
+		void insererUnClient(System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
+		void modifierUnClient(int, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
 	};
 
 }
