@@ -134,6 +134,7 @@
     <ClCompile Include="MyFormGestionStatistique.cpp" />
     <ClCompile Include="MyFormGestionStock.cpp" />
     <ClCompile Include="CLmap_utilisateur.cpp" />
+    <ClCompile Include="MyFormUser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLmap_articles.h" />
@@ -163,6 +164,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="CLmap_utilisateur.h" />
+    <ClInclude Include="MyFormUser.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
@@ -179,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyFormGestionStatistique.resx">
       <DependentUpon>MyFormGestionStatistique.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyFormUser.resx">
+      <DependentUpon>MyFormUser.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,6 +1,6 @@
 #pragma once
 #include "CLservices.h"
-
+#include "MyFormUser.h"
 namespace POOP6 {
 
 	using namespace System;
@@ -42,6 +42,7 @@ namespace POOP6 {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::Button^ button3;
 	protected:
 
 	private:
@@ -61,6 +62,7 @@ namespace POOP6 {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -102,11 +104,22 @@ namespace POOP6 {
 			this->textBox1->TabIndex = 3;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyFormGestionClient::textBox1_TextChanged);
 			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(237, 346);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(128, 36);
+			this->button3->TabIndex = 4;
+			this->button3->Text = L"insérer";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyFormGestionClient::button3_Click);
+			// 
 			// MyFormGestionClient
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(968, 579);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -136,6 +149,10 @@ namespace POOP6 {
 		this->oSvc->deleteUnClient(id);
 	}
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	MyFormUser^ myForm_User = gcnew MyFormUser();
+	myForm_User->Show();
 }
 };
 }
