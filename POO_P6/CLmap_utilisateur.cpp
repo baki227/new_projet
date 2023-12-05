@@ -5,19 +5,33 @@
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::SelectHumain(void)
 {
-return "SELECT UTILISATEUR.id_utilisateur AS id_client_utilisateur, UTILISATEUR.uti_nom AS client_nom, UTILISATEUR.uti_prenom AS client_prenom, UTILISATEUR.uti_dateNaissance AS client_dateNaissance, ADRESSE.adr_num, ADRESSE.adr_rue, ADRESSE.adr_postalcode, ADRESSE.adr_type, VILLE.cit_nom AS ville_nom, REGION.reg_name AS region_nom, PAYS.pay_nom AS pays_nom FROM [DB_P6].[dbo].[CLIENTS] JOIN [DB_P6].[dbo].[UTILISATEUR] ON CLIENTS.id_utilisateur = UTILISATEUR.id_utilisateur JOIN [DB_P6].[dbo].[ADRESSE] ON UTILISATEUR.id_utilisateur = ADRESSE.id_ville JOIN [DB_P6].[dbo].[VILLE] ON ADRESSE.id_ville = VILLE.id_ville JOIN [DB_P6].[dbo].[REGION] ON VILLE.ID_REGION = REGION.ID_REGION JOIN [DB_P6].[dbo].[PAYS] ON REGION.ID_PAYS = PAYS.ID_PAYS;";
-
+	return "SELECT * FROM [DB_P6].[dbo].[CLIENTS] JOIN [DB_P6].[dbo].[AVOIR] ON CLIENTS.id_utilisateur = AVOIR.id_utilisateur JOIN [DB_P6].[dbo].[UTILISATEUR] ON AVOIR.id_utilisateur = UTILISATEUR.id_utilisateur JOIN [DB_P6].[dbo].[ADRESSE] ON AVOIR.id_adresse = ADRESSE.id_adresse;";
 }
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::Insert(void)
 {
+	System::Text::StringBuilder^ sb = gcnew System::Text::StringBuilder();
 
-	return "INSERT INTO [DB_P6].[dbo].[UTILISATEUR] (uti_nom, uti_prenom, uti_dateNaissance) VALUES ('" + this->uti_nom + "', '" + this->uti_prenom + "', '" + System::DateTime::ParseExact(this->uti_dateNaissance, "dd-MM-yyyy", System::Globalization::CultureInfo::InvariantCulture).ToString("yyyy-MM-dd") + "');\n"
-		+ "INSERT INTO [DB_P6].[dbo].[ADRESSE] (adr_num, adr_rue, adr_postalcode, adr_type, id_ville) VALUES ('" + this->adr_num + "', '" + this->adr_rue + "', '" + this->adr_postalcode + "', '" + this->adr_type + "', 1);\n"
-		+ "INSERT INTO [DB_P6].[dbo].[VILLE] (cit_nom, ID_REGION) VALUES ('" + this->cit_nom + "', 1);\n"
-		+ "INSERT INTO [DB_P6].[dbo].[REGION] (reg_name, ID_PAYS) VALUES ('" + this->reg_nom + "', 1);\n"
-		+ "INSERT INTO [DB_P6].[dbo].[PAYS] (pay_nom) VALUES ('" + this->pay_nom + "');\n";
+	sb->Append("DECLARE @NewUserId INT;\n");
+	sb->Append("DECLARE @NewAddressId INT;\n");
+	sb->Append("DECLARE @NewClientId INT;\n");
 
+	sb->Append("INSERT INTO ADRESSE (adr_num, adr_rue, adr_postalcode, adr_ville, adr_region, adr_pays, adr_type, id_ville)\n");
+	sb->Append("VALUES ('" + this->adr_num + "', '" + this->adr_rue + "', '" + this->adr_postalcode + "', '" + this->cit_nom + "', '" + this->reg_nom + "', '" + this->pay_nom + "', 'adresse', '1');\n");
+	sb->Append("SET @NewAddressId = SCOPE_IDENTITY();\n");
+
+	sb->Append("INSERT INTO UTILISATEUR (uti_nom, uti_prenom, uti_dateNaissance)\n");
+	sb->Append("VALUES ('" + this->uti_nom + "', '" + this->uti_prenom + "', '" + this->uti_dateNaissance + "');\n");
+	sb->Append("SET @NewUserId = SCOPE_IDENTITY();\n");
+
+	sb->Append("INSERT INTO CLIENTS (id_utilisateur)\n");
+	sb->Append("VALUES (@NewUserId);\n");
+	sb->Append("SET @NewClientId = SCOPE_IDENTITY();\n");
+
+	sb->Append("INSERT INTO AVOIR (id_utilisateur, id_adresse)\n");
+	sb->Append("VALUES (@NewUserId, @NewAddressId);\n");
+
+	return sb->ToString();
 
 }
 	

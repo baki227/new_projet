@@ -129,12 +129,14 @@ namespace POOP6 {
 			// 
 			// button6
 			// 
-			this->button6->Location = System::Drawing::Point(793, 456);
+			this->button6->BackColor = System::Drawing::Color::Goldenrod;
+			this->button6->ForeColor = System::Drawing::Color::White;
+			this->button6->Location = System::Drawing::Point(666, 613);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(104, 44);
 			this->button6->TabIndex = 5;
 			this->button6->Text = L"Quitter";
-			this->button6->UseVisualStyleBackColor = true;
+			this->button6->UseVisualStyleBackColor = false;
 			this->button6->Click += gcnew System::EventHandler(this, &home::quit_click);
 			// 
 			// panel1
@@ -149,6 +151,7 @@ namespace POOP6 {
 			// 
 			this->panel2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel2.BackgroundImage")));
 			this->panel2->Controls->Add(this->button3);
+			this->panel2->Controls->Add(this->button6);
 			this->panel2->Controls->Add(this->button1);
 			this->panel2->Location = System::Drawing::Point(400, -2);
 			this->panel2->Name = L"panel2";
@@ -161,7 +164,6 @@ namespace POOP6 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1182, 667);
 			this->Controls->Add(this->panel1);
-			this->Controls->Add(this->button6);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button2);
