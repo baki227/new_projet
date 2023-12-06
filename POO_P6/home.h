@@ -250,8 +250,8 @@ namespace POOP6 {
 		}
 #pragma endregion
 	private: System::Void gestionPersonnel_Click(System::Object^ sender, System::EventArgs^ e) {
-		MyForm^ myForm = gcnew MyForm();  // Instantiate home
-		myForm->Show();  // Show home
+		MyFormGestionPersonnel^ MyForm_GestionPersonnel = gcnew MyFormGestionPersonnel();
+		MyForm_GestionPersonnel->Show();
 	}
 	private: System::Void home_Load(System::Object^ sender, System::EventArgs^ e) {
 	}

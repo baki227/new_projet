@@ -20,6 +20,7 @@ namespace NS_Comp_Svc
 		void deleteUnePersonne(int);
 	};
 
+	//------------------------------------CLIENTS----------------------------------------
 	ref class CLservices_Client
 	{
 	private:
@@ -33,5 +34,21 @@ namespace NS_Comp_Svc
 		void insererUnClient(System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
 		void modifierUnClient(int, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
 	};
+
+	//------------------------------------personnel----------------------------------------
+	ref class CLservices_Personnel
+	{
+	private:
+		NS_Comp_Data::CLcad^ oCad;
+		NS_Comp_MappageUtilisateur::utilisateur^ oMappPersonnel;
+
+	public:
+		CLservices_Personnel(void);
+		System::Data::DataSet^ selectionnerTousLePersonnel(System::String^);
+		void deleteUnPersonnel(int);
+		void insererUnPersonnel(System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
+		void modifierUnPersonnel(int, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
+	};
+
 
 }
