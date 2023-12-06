@@ -49,6 +49,17 @@ namespace NS_Comp_Svc
 		void insererUnPersonnel(System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
 		void modifierUnPersonnel(int, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
 	};
+	//------------------------------------statistiques----------------------------------------
+	ref class CLservices_Statistiques
+	{
+	private:
+		NS_Comp_Data::CLcad^ oCad;
+		NS_Comp_MappageUtilisateur::utilisateur^ oMappStatistique;//changerça
+
+	public:
+		CLservices_Statistiques(void);
+		//tous les focntions de mes boutons 
+		
 
 
 }
