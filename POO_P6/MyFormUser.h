@@ -41,9 +41,9 @@ namespace POOP6 {
 	protected:
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::TextBox^ textBox3;
-	private: System::Windows::Forms::TextBox^ textBox4;
 
-	private: System::Windows::Forms::TextBox^ textBox6;
+
+
 	private: System::Windows::Forms::TextBox^ textBox7;
 	private: NS_Comp_Svc::CLservices_Client^ oSvc; //oublie pas ------------------------------------
 	private: System::Data::DataSet^ oDs;////oublie pas ------------------------------------
@@ -55,7 +55,7 @@ namespace POOP6 {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::Label^ label7;
+
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Label^ label10;
@@ -68,6 +68,8 @@ namespace POOP6 {
 	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::Label^ label12;
+	private: System::Windows::Forms::TextBox^ textBox4;
+	private: System::Windows::Forms::Button^ button2;
 
 
 	private:
@@ -86,8 +88,6 @@ namespace POOP6 {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -95,7 +95,6 @@ namespace POOP6 {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
@@ -108,6 +107,8 @@ namespace POOP6 {
 			this->dateTimePicker1 = (gcnew System::Windows::Forms::DateTimePicker());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -130,20 +131,6 @@ namespace POOP6 {
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(100, 26);
 			this->textBox3->TabIndex = 2;
-			// 
-			// textBox4
-			// 
-			this->textBox4->Location = System::Drawing::Point(390, 237);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(100, 26);
-			this->textBox4->TabIndex = 3;
-			// 
-			// textBox6
-			// 
-			this->textBox6->Location = System::Drawing::Point(717, 163);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(100, 26);
-			this->textBox6->TabIndex = 5;
 			// 
 			// textBox7
 			// 
@@ -206,15 +193,6 @@ namespace POOP6 {
 			this->label6->Size = System::Drawing::Size(32, 20);
 			this->label6->TabIndex = 15;
 			this->label6->Text = L"rue";
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(386, 214);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(63, 20);
-			this->label7->TabIndex = 16;
-			this->label7->Text = L"numéro";
 			// 
 			// label8
 			// 
@@ -286,7 +264,7 @@ namespace POOP6 {
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(88, 32);
 			this->button1->TabIndex = 23;
-			this->button1->Text = L"valider";
+			this->button1->Text = L"insérer";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyFormUser::Valider_Click);
 			// 
@@ -302,6 +280,7 @@ namespace POOP6 {
 			// comboBox4
 			// 
 			this->comboBox4->FormattingEnabled = true;
+			this->comboBox4->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"France" });
 			this->comboBox4->Location = System::Drawing::Point(407, 377);
 			this->comboBox4->Name = L"comboBox4";
 			this->comboBox4->Size = System::Drawing::Size(97, 28);
@@ -332,13 +311,33 @@ namespace POOP6 {
 			this->label12->Size = System::Drawing::Size(26, 20);
 			this->label12->TabIndex = 28;
 			this->label12->Text = L"ID";
-		
+			// 
+			// textBox4
+			// 
+			this->textBox4->BackColor = System::Drawing::Color::White;
+			this->textBox4->Location = System::Drawing::Point(25, 578);
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(10, 26);
+			this->textBox4->TabIndex = 29;
+			this->textBox4->Visible = false;
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(661, 572);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 31);
+			this->button2->TabIndex = 30;
+			this->button2->Text = L"modifier";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyFormUser::ModifierClient_Click);
 			// 
 			// MyFormUser
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(866, 620);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->dateTimePicker1);
@@ -351,7 +350,6 @@ namespace POOP6 {
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
-			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
@@ -359,8 +357,6 @@ namespace POOP6 {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->textBox7);
-			this->Controls->Add(this->textBox6);
-			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);
@@ -433,10 +429,14 @@ namespace POOP6 {
 	}
 	private: System::Void Valider_Click(System::Object^ sender, System::EventArgs^ e) {
 		
-		this->oSvc->insererUnClient(textBox1->Text, textBox2->Text, dateTimePicker1->Text, comboBox1->Text, textBox6->Text,textBox7->Text, textBox4->Text, comboBox2->Text, comboBox3->Text, textBox3->Text);
+		this->oSvc->insererUnClient(textBox1->Text, textBox2->Text, dateTimePicker1->Text, textBox7->Text , textBox3->Text, comboBox3->Text, textBox4->Text, comboBox2->Text, comboBox1->Text , comboBox4->Text);
 	}
 private: System::Void comboBox3_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 
+private: System::Void ModifierClient_Click(System::Object^ sender, System::EventArgs^ e) {
+	int id = Convert::ToInt32(textBox5->Text);
+	this->oSvc->modifierUnClient(id, textBox1->Text, textBox2->Text, dateTimePicker1->Text, textBox7->Text, textBox3->Text, comboBox3->Text, textBox4->Text, comboBox2->Text, comboBox1->Text, comboBox4->Text);
+}
 };
 	}

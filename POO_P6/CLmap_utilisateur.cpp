@@ -43,8 +43,27 @@ System::String^ NS_Comp_MappageUtilisateur::utilisateur::Delete(void)
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::Update(void)
 {
-	throw gcnew System::NotImplementedException();
-	// TODO: insérer une instruction return ici
+	System::Text::StringBuilder^ sb = gcnew System::Text::StringBuilder();
+	sb->Append("DECLARE @ClientIdToUpdate INT = " + this->Id_Client + " ;");
+	sb->Append("UPDATE ADRESSE ");
+	sb->Append("SET ");
+	sb->Append("adr_num = '" + this->adr_num + "', ");
+	sb->Append("adr_rue = '" + this->adr_rue + "', ");
+	sb->Append("adr_postalcode = '" + this->adr_postalcode + "', ");
+	sb->Append("adr_ville = '" + this->cit_nom + "', ");
+	sb->Append("adr_region = '" + this->reg_nom + "', ");
+	sb->Append("adr_pays = '" + this->pay_nom + "', ");
+	sb->Append("adr_type = 'adresse', ");
+	sb->Append("id_ville = '1' ");
+	sb->Append("WHERE id_adresse = (SELECT id_adresse FROM AVOIR WHERE id_utilisateur IN (SELECT id_utilisateur FROM CLIENTS WHERE id_client = @ClientIdToUpdate)); ");
+	sb->Append("UPDATE UTILISATEUR ");
+	sb->Append("SET ");
+	sb->Append("uti_nom = '" + this->uti_nom + "', ");
+	sb->Append("uti_prenom = '" + this->uti_prenom + "', ");
+	sb->Append("uti_dateNaissance = '" + this->uti_dateNaissance + "' ");
+	sb->Append("WHERE id_utilisateur IN (SELECT id_utilisateur FROM CLIENTS WHERE id_client = @ClientIdToUpdate); ");
+
+	return sb->ToString();
 }
 
 //get

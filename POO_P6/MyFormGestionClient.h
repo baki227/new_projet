@@ -43,6 +43,8 @@ namespace POOP6 {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::Button^ button5;
 	protected:
 
 	private:
@@ -63,6 +65,8 @@ namespace POOP6 {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -114,11 +118,31 @@ namespace POOP6 {
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &MyFormGestionClient::button3_Click);
 			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(237, 391);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(128, 33);
+			this->button4->TabIndex = 5;
+			this->button4->Text = L"modifier";
+			this->button4->UseVisualStyleBackColor = true;
+			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(331, 430);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(10, 8);
+			this->button5->TabIndex = 6;
+			this->button5->Text = L"button5";
+			this->button5->UseVisualStyleBackColor = true;
+			// 
 			// MyFormGestionClient
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(968, 579);
+			this->Controls->Add(this->button5);
+			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button2);

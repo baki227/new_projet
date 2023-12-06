@@ -88,7 +88,7 @@ namespace POOP6 {
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Segoe UI Variable Display", 9));
 			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(142, 471);
+			this->button1->Location = System::Drawing::Point(285, 518);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(196, 79);
 			this->button1->TabIndex = 0;
@@ -102,7 +102,7 @@ namespace POOP6 {
 			this->button2->FlatAppearance->BorderSize = 0;
 			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button2->ForeColor = System::Drawing::Color::White;
-			this->button2->Location = System::Drawing::Point(142, 216);
+			this->button2->Location = System::Drawing::Point(81, 216);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(196, 79);
 			this->button2->TabIndex = 1;
@@ -116,7 +116,7 @@ namespace POOP6 {
 			this->button3->FlatAppearance->BorderSize = 0;
 			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button3->ForeColor = System::Drawing::Color::White;
-			this->button3->Location = System::Drawing::Point(425, 352);
+			this->button3->Location = System::Drawing::Point(488, 364);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(196, 79);
 			this->button3->TabIndex = 2;
@@ -130,7 +130,7 @@ namespace POOP6 {
 			this->button4->FlatAppearance->BorderSize = 0;
 			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button4->ForeColor = System::Drawing::Color::White;
-			this->button4->Location = System::Drawing::Point(142, 352);
+			this->button4->Location = System::Drawing::Point(81, 364);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(196, 79);
 			this->button4->TabIndex = 3;
@@ -144,7 +144,7 @@ namespace POOP6 {
 			this->button5->FlatAppearance->BorderSize = 0;
 			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button5->ForeColor = System::Drawing::Color::White;
-			this->button5->Location = System::Drawing::Point(425, 216);
+			this->button5->Location = System::Drawing::Point(488, 216);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(196, 79);
 			this->button5->TabIndex = 4;
@@ -221,7 +221,7 @@ namespace POOP6 {
 			this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI Variable Display", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(121, 82);
+			this->label2->Location = System::Drawing::Point(111, 73);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(563, 27);
 			this->label2->TabIndex = 2;

@@ -91,7 +91,20 @@ void NS_Comp_Svc::CLservices_Client::insererUnClient(System::String^ nom, System
 	this->oCad->actionRows(sql);
 }
 
-void NS_Comp_Svc::CLservices_Client::modifierUnClient(int, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^)
+void NS_Comp_Svc::CLservices_Client::modifierUnClient(int id_client, System::String^ nom, System::String^ prenom, System::String^ dateNaissance, System::String^ numAdresse, System::String^ rueAdresse, System::String^ code_postal, System::String^ typeArdresse, System::String^ ville, System::String^ region, System::String^ pays)
 {
-	throw gcnew System::NotImplementedException();
+	System::String^ sql;
+	this->oMappUtilisateur->set_Id_Client(id_client);
+	this->oMappUtilisateur->set_uti_nom(nom);
+	this->oMappUtilisateur->set_uti_prenom(prenom);
+	this->oMappUtilisateur->set_uti_dateNaissance(dateNaissance);
+	this->oMappUtilisateur->set_adr_num(numAdresse);
+	this->oMappUtilisateur->set_adr_rue(rueAdresse);
+	this->oMappUtilisateur->set_adr_postalcode(code_postal);
+	this->oMappUtilisateur->set_adr_type(typeArdresse);
+	this->oMappUtilisateur->set_cit_nom(ville);
+	this->oMappUtilisateur->set_reg_nom(region);
+	this->oMappUtilisateur->set_pay_nom(pays);
+	sql = this->oMappUtilisateur->Update();
+	this->oCad->actionRows(sql);
 }
