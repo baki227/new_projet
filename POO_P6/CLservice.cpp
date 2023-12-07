@@ -1,7 +1,7 @@
 //CLservice.CPP***************************************************************************************
 #include <iostream>
 #include "CLservices.h"
-
+#include "CLcad.h"
 NS_Comp_Svc::CLservices::CLservices(void)
 {
 	this->oCad = gcnew NS_Comp_Data::CLcad();
@@ -188,6 +188,12 @@ void NS_Comp_Svc::CLservices_Personnel::modifierUnPersonnel(int id_personnel, Sy
 NS_Comp_Svc::CLservices_Statistiques::CLservices_Statistiques(void)
 {
 	
+
+	// Initialisation de oCmd
+	
+	// Initialisation de oCmd
+	oCmd = gcnew System::Data::SqlClient::SqlCommand();
+	oCmd->Connection = oConn;
 	this->oCad = gcnew NS_Comp_Data::CLcad();
 	this->oMappStatistiques = gcnew NS_Comp_MappageStatistiques::statistiques();
 
@@ -224,6 +230,8 @@ System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServicearticleMoins
 
 System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServiceChiffreAffaireSurUnMois(System::String^ dataTableName, System::String^ date)
 {
-
+	this->oMappStatistiques->set_com_datePaiement(date);
+	System::String^ sql = this->oMappStatistiques->chiffreAffairesurUnMois();
+	return this->oCad->getRows(sql, dataTableName);
 	
 }

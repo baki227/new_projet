@@ -99,24 +99,17 @@ System::String^ NS_Comp_MappageStatistiques::statistiques::articleMoinssVendus(v
 
 System::String^ NS_Comp_MappageStatistiques::statistiques::chiffreAffairesurUnMois(void)
 {
-    return "(DECLARE @MoisDonne DATE = '"+this->com_datePaiement+"';"
-
-+"SELECT"
-  +"  SUM(P.pri_prix) AS chiffre_affaires"
-        + " FROM"
-        + "   COMMANDES C"
-        + " JOIN"
-        + "   CONTENIR CN ON C.Id_Commande = CN.Id_Commande"
-        + " JOIN"
-        + "   ARTICLES Ar ON CN.Id_Article = Ar.Id_Article"
-        + " JOIN"
-        + "    posseder Po ON Ar.Id_Article = Po.Id_Article"
-        + " JOIN"
-        + "   PRIX P ON Po.id_prix = P.id_prix"
-        + " WHERE"
-        + "   MONTH(C.com_datePaiement) = MONTH(@MoisDonne)"
-        + "  AND YEAR(C.com_datePaiement) = YEAR(@MoisDonne)";
+    return "DECLARE @MoisDonne DATE = '" + this->com_datePaiement + "';"
+        + "SELECT SUM(P.pri_prix) AS chiffre_affaires"
+        + " FROM COMMANDES C"
+        + " JOIN CONTENIR CN ON C.Id_Commande = CN.Id_Commande"
+        + " JOIN ARTICLES Ar ON CN.Id_Article = Ar.Id_Article"
+        + " JOIN posseder Po ON Ar.Id_Article = Po.Id_Article"
+        + " JOIN PRIX P ON Po.id_prix = P.id_prix"
+        + " WHERE MONTH(C.com_datePaiement) = MONTH(@MoisDonne)"
+        + " AND YEAR(C.com_datePaiement) = YEAR(@MoisDonne);";
 }
+
 
 System::String^ NS_Comp_MappageStatistiques::statistiques::totalAchatClient(void)
 {

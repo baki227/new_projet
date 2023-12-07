@@ -58,6 +58,8 @@ namespace NS_Comp_Svc
 	ref class CLservices_Statistiques
 	{
 	private:
+		System::Data::SqlClient::SqlConnection^ oConn;
+		System::Data::SqlClient::SqlCommand^ oCmd;
 		NS_Comp_Data::CLcad^ oCad;
 		NS_Comp_MappageStatistiques::statistiques^ oMappStatistiques;
 

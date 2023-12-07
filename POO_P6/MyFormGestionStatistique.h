@@ -119,7 +119,7 @@ namespace POOP6 {
 			// 
 			// dateTimePicker3
 			// 
-			this->dateTimePicker3->CustomFormat = L"dd-MM-yyyy";
+			this->dateTimePicker3->CustomFormat = L"yyyy-MM-dd";
 			this->dateTimePicker3->Format = System::Windows::Forms::DateTimePickerFormat::Custom;
 			this->dateTimePicker3->Location = System::Drawing::Point(859, 309);
 			this->dateTimePicker3->Name = L"dateTimePicker3";
@@ -299,9 +299,14 @@ private: System::Void moinsVendus_Click(System::Object^ sender, System::EventArg
 private: System::Void chiffreAffaireUnMois_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
 	this->dataGridView1->Refresh();
-	this->oDs = this->oSvc->ServiceChiffreAffaireSurUnMois("Rsl",dateTimePicker3->Text) ;
+
+	
+
+	this->oDs = this->oSvc->ServiceChiffreAffaireSurUnMois("Rsl", dateTimePicker3->Text);
 	this->dataGridView1->DataSource = this->oDs;
 	this->dataGridView1->DataMember = "Rsl";
+
+
 }
 };
 }
