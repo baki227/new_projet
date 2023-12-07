@@ -92,6 +92,8 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -126,6 +128,7 @@
     <ClCompile Include="CLservice.cpp" />
     <ClCompile Include="CLmap_commandes.cpp" />
     <ClCompile Include="CLservices.cpp" />
+    <ClCompile Include="CL_map_statistiques.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="home.cpp" />
     <ClCompile Include="MyFormGestionClient.cpp" />
@@ -142,6 +145,7 @@
     <ClInclude Include="CLmapTB.h" />
     <ClInclude Include="CLservices.h" />
     <ClInclude Include="CLmap_commandes.h" />
+    <ClInclude Include="CL_map_statistiques.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

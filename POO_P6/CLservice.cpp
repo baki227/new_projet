@@ -182,3 +182,48 @@ void NS_Comp_Svc::CLservices_Personnel::modifierUnPersonnel(int id_personnel, Sy
 	sql = this->oMappPersonnel->UpdatePersonnel();
 	this->oCad->actionRows(sql);
 }
+
+
+//------------------------------------statistiques----------------------------------------
+NS_Comp_Svc::CLservices_Statistiques::CLservices_Statistiques(void)
+{
+	
+	this->oCad = gcnew NS_Comp_Data::CLcad();
+	this->oMappStatistiques = gcnew NS_Comp_MappageStatistiques::statistiques();
+
+}
+
+System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::Servicecalculerpaniermoyen(System::String^ dataTableName)
+{
+	
+	System::String^ sql;
+	sql = this->oMappStatistiques->calculerpaniermoyen();
+	return this->oCad->getRows(sql, dataTableName);
+}
+
+System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServiceproduitsSousSueilReaprovisionnement(System::String^ dataTableName)
+{
+	System::String^ sql;
+	sql = this->oMappStatistiques->produitsSousSueilReaprovisionnement();
+	return this->oCad->getRows(sql, dataTableName);
+}
+
+System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServicearticlePlusVendus(System::String^ dataTableName)
+{
+	System::String^ sql;
+	sql = this->oMappStatistiques->articlePlusVendus();
+	return this->oCad->getRows(sql, dataTableName);
+}
+
+System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServicearticleMoinssVendus(System::String^ dataTableName)
+{
+	System::String^ sql;
+	sql = this->oMappStatistiques->articleMoinssVendus();
+	return this->oCad->getRows(sql, dataTableName);
+}
+
+System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServiceChiffreAffaireSurUnMois(System::String^ dataTableName, System::String^ date)
+{
+
+	
+}

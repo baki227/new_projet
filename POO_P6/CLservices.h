@@ -5,6 +5,7 @@
 #include "CLmap_utilisateur.h"
 #include "CLmap_articles.h"
 #include "CLmap_commandes.h"
+#include "CL_map_statistiques.h"
 namespace NS_Comp_Svc
 {
 	ref class CLservices
@@ -39,6 +40,7 @@ namespace NS_Comp_Svc
 	ref class CLservices_Personnel
 	{
 	private:
+	
 		NS_Comp_Data::CLcad^ oCad;
 		NS_Comp_MappageUtilisateur::utilisateur^ oMappPersonnel;
 
@@ -49,17 +51,24 @@ namespace NS_Comp_Svc
 		void insererUnPersonnel(System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
 		void modifierUnPersonnel(int, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^, System::String^);
 	};
+
+
 	//------------------------------------statistiques----------------------------------------
+
 	ref class CLservices_Statistiques
 	{
 	private:
 		NS_Comp_Data::CLcad^ oCad;
-		NS_Comp_MappageUtilisateur::utilisateur^ oMappStatistique;//changerça
+		NS_Comp_MappageStatistiques::statistiques^ oMappStatistiques;
 
 	public:
 		CLservices_Statistiques(void);
-		//tous les focntions de mes boutons 
-		
+		System::Data::DataSet^ Servicecalculerpaniermoyen(System::String^);
+		System::Data::DataSet^ ServiceproduitsSousSueilReaprovisionnement(System::String^);
+		System::Data::DataSet^ ServicearticlePlusVendus(System::String^);
+		System::Data::DataSet^ ServicearticleMoinssVendus(System::String^);
+		System::Data::DataSet^ ServiceChiffreAffaireSurUnMois(System::String^, System::String^);
+	};
 
 
 }

@@ -1,5 +1,5 @@
 #pragma once
-
+#include "CLservices.h"
 namespace POOP6 {
 
 	using namespace System;
@@ -18,11 +18,14 @@ namespace POOP6 {
 		MyFormGestionStatistique(void)
 		{
 			InitializeComponent();
+			this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
 			//
 			//TODO: ajoutez ici le code du constructeur
 			//
 		}
-
+	private: NS_Comp_Svc::CLservices_Statistiques^ oSvc; //oublie pas ------------------------------------
+	private: System::Windows::Forms::Button^ button10;
+	private: System::Data::DataSet^ oDs;////oublie pas ------------------------------------
 	protected:
 		/// <summary>
 		/// Nettoyage des ressources utilisées.
@@ -34,6 +37,7 @@ namespace POOP6 {
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
@@ -79,6 +83,7 @@ namespace POOP6 {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button9 = (gcnew System::Windows::Forms::Button());
+			this->button10 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -100,6 +105,7 @@ namespace POOP6 {
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"calculer panier moyen";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyFormGestionStatistique::CalculpanierMoyen_Click);
 			// 
 			// button2
 			// 
@@ -109,6 +115,7 @@ namespace POOP6 {
 			this->button2->TabIndex = 2;
 			this->button2->Text = L"calculer chiffre d\'affaire sur un mois";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyFormGestionStatistique::chiffreAffaireUnMois_Click);
 			// 
 			// dateTimePicker3
 			// 
@@ -122,12 +129,13 @@ namespace POOP6 {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(33, 556);
+			this->button3->Location = System::Drawing::Point(50, 556);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(327, 175);
 			this->button3->TabIndex = 32;
 			this->button3->Text = L"identifier produits sous seuil de reaprovisionnement";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyFormGestionStatistique::produitsSouseuil_Click);
 			// 
 			// button4
 			// 
@@ -162,6 +170,7 @@ namespace POOP6 {
 			this->button5->TabIndex = 36;
 			this->button5->Text = L"o\tIdentifier les 10 articles les plus vendus";
 			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &MyFormGestionStatistique::plusVendus_Click);
 			// 
 			// button6
 			// 
@@ -171,6 +180,7 @@ namespace POOP6 {
 			this->button6->TabIndex = 37;
 			this->button6->Text = L"o\tIdentifier les 10 articles les moins vendus";
 			this->button6->UseVisualStyleBackColor = true;
+			this->button6->Click += gcnew System::EventHandler(this, &MyFormGestionStatistique::moinsVendus_Click);
 			// 
 			// button7
 			// 
@@ -216,11 +226,21 @@ namespace POOP6 {
 				L"ck";
 			this->button9->UseVisualStyleBackColor = true;
 			// 
+			// button10
+			// 
+			this->button10->Location = System::Drawing::Point(859, 351);
+			this->button10->Name = L"button10";
+			this->button10->Size = System::Drawing::Size(75, 23);
+			this->button10->TabIndex = 43;
+			this->button10->Text = L"button10";
+			this->button10->UseVisualStyleBackColor = true;
+			// 
 			// MyFormGestionStatistique
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1591, 969);
+			this->Controls->Add(this->button10);
 			this->Controls->Add(this->button9);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->textBox2);
@@ -244,5 +264,44 @@ namespace POOP6 {
 
 		}
 #pragma endregion
-	};
+
+	private: System::Void CalculpanierMoyen_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
+		this->dataGridView1->Refresh();
+		this->oDs = this->oSvc->Servicecalculerpaniermoyen("Rsl");
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+
+	
+private: System::Void produitsSouseuil_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
+	this->dataGridView1->Refresh();
+	this->oDs = this->oSvc->ServiceproduitsSousSueilReaprovisionnement("Rsl");
+	this->dataGridView1->DataSource = this->oDs;
+	this->dataGridView1->DataMember = "Rsl";
+}
+
+private: System::Void plusVendus_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
+	this->dataGridView1->Refresh();
+	this->oDs = this->oSvc->ServicearticlePlusVendus("Rsl");
+	this->dataGridView1->DataSource = this->oDs;
+	this->dataGridView1->DataMember = "Rsl";
+}
+private: System::Void moinsVendus_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
+	this->dataGridView1->Refresh();
+	this->oDs = this->oSvc->ServicearticleMoinssVendus("Rsl");
+	this->dataGridView1->DataSource = this->oDs;
+	this->dataGridView1->DataMember = "Rsl";
+}
+private: System::Void chiffreAffaireUnMois_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
+	this->dataGridView1->Refresh();
+	this->oDs = this->oSvc->ServiceChiffreAffaireSurUnMois("Rsl",dateTimePicker3->Text) ;
+	this->dataGridView1->DataSource = this->oDs;
+	this->dataGridView1->DataMember = "Rsl";
+}
+};
 }
