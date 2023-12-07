@@ -235,3 +235,24 @@ System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServiceChiffreAffai
 	return this->oCad->getRows(sql, dataTableName);
 	
 }
+
+System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServiceTotalAchatClient(System::String^ dataTableName, int id)
+{
+	this->oMappStatistiques->set_Id_Client(id);
+	System::String^ sql = this->oMappStatistiques->totalAchatClient();
+	return this->oCad->getRows(sql, dataTableName);
+}
+
+System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServiceTotalValeurAchatStock(System::String^ dataTableName, int id)
+{
+	this->oMappStatistiques->set_Id_stock(id);
+	System::String^ sql = this->oMappStatistiques->totalValeurAchatStock();
+	return this->oCad->getRows(sql, dataTableName);
+}
+
+System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServicetotalValeurCommercialeStock(System::String^ dataTableName, int id)
+{
+	this->oMappStatistiques->set_Id_stock(id);
+	System::String^ sql = this->oMappStatistiques->totalValeurCommercialeStock();
+	return this->oCad->getRows(sql, dataTableName);
+}

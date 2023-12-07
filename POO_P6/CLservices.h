@@ -70,6 +70,9 @@ namespace NS_Comp_Svc
 		System::Data::DataSet^ ServicearticlePlusVendus(System::String^);
 		System::Data::DataSet^ ServicearticleMoinssVendus(System::String^);
 		System::Data::DataSet^ ServiceChiffreAffaireSurUnMois(System::String^, System::String^);
+		System::Data::DataSet^ ServiceTotalAchatClient(System::String^, int);
+		System::Data::DataSet^ ServiceTotalValeurAchatStock(System::String^, int);
+		System::Data::DataSet^ ServicetotalValeurCommercialeStock(System::String^, int);
 	};
 
 

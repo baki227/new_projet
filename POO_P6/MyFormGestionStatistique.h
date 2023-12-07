@@ -145,6 +145,7 @@ namespace POOP6 {
 			this->button4->TabIndex = 33;
 			this->button4->Text = L"o\tCalculer le montant total des achats pour un client";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &MyFormGestionStatistique::totalAchatClient_Click);
 			// 
 			// textBox1
 			// 
@@ -190,6 +191,7 @@ namespace POOP6 {
 			this->button7->TabIndex = 38;
 			this->button7->Text = L"o\tCalculer la valeur commerciale du stock";
 			this->button7->UseVisualStyleBackColor = true;
+			this->button7->Click += gcnew System::EventHandler(this, &MyFormGestionStatistique::TotalValeurAchatStock_Click);
 			// 
 			// button8
 			// 
@@ -199,6 +201,7 @@ namespace POOP6 {
 			this->button8->TabIndex = 39;
 			this->button8->Text = L"o\tCalculer la valeur d’achat du stock";
 			this->button8->UseVisualStyleBackColor = true;
+			this->button8->Click += gcnew System::EventHandler(this, &MyFormGestionStatistique::totalValeurCommercialeStock_Click);
 			// 
 			// textBox2
 			// 
@@ -307,6 +310,32 @@ private: System::Void chiffreAffaireUnMois_Click(System::Object^ sender, System:
 	this->dataGridView1->DataMember = "Rsl";
 
 
+}
+private: System::Void totalAchatClient_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
+	this->dataGridView1->Refresh();
+	int id = Convert::ToInt16(textBox1->Text);
+	this->oDs = this->oSvc->ServiceTotalAchatClient("Rsl", id);
+	this->dataGridView1->DataSource = this->oDs;
+	this->dataGridView1->DataMember = "Rsl";
+
+
+}
+private: System::Void TotalValeurAchatStock_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
+	this->dataGridView1->Refresh();
+	int id = Convert::ToInt16(textBox2->Text);
+	this->oDs = this->oSvc->ServiceTotalValeurAchatStock("Rsl", id);
+	this->dataGridView1->DataSource = this->oDs;
+	this->dataGridView1->DataMember = "Rsl";
+}
+private: System::Void totalValeurCommercialeStock_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
+	this->dataGridView1->Refresh();
+	int id = Convert::ToInt16(textBox2->Text);
+	this->oDs = this->oSvc->ServicetotalValeurCommercialeStock("Rsl", id);
+	this->dataGridView1->DataSource = this->oDs;
+	this->dataGridView1->DataMember = "Rsl";
 }
 };
 }

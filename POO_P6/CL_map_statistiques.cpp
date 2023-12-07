@@ -113,20 +113,57 @@ System::String^ NS_Comp_MappageStatistiques::statistiques::chiffreAffairesurUnMo
 
 System::String^ NS_Comp_MappageStatistiques::statistiques::totalAchatClient(void)
 {
-	throw gcnew System::NotImplementedException();
-	// TODO: insérer une instruction return ici
+    return "SELECT "
+        "C.Id_Client, "
+        "U.uti_nom + ' ' + U.uti_prenom AS nom_complet_client, "
+        "SUM(P.pri_prix) AS montant_total_achats "
+        "FROM CLIENTS C "
+        "JOIN UTILISATEUR U ON C.id_utilisateur = U.id_utilisateur "
+        "JOIN COMMANDES CO ON C.Id_Client = CO.Id_Client "
+        "JOIN CONTENIR CN ON CO.Id_Commande = CN.Id_Commande "
+        "JOIN ARTICLES A ON CN.Id_Article = A.Id_Article "
+        "JOIN posseder Po ON A.Id_Article = Po.Id_Article "
+        "JOIN PRIX P ON Po.id_prix = P.id_prix "
+        "WHERE C.Id_Client = " + System::Convert::ToString(this->Id_Client) + " "
+        "GROUP BY C.Id_Client, U.uti_nom, U.uti_prenom;";
+
+
 }
 
 System::String^ NS_Comp_MappageStatistiques::statistiques::totalValeurAchatStock(void)
 {
-	throw gcnew System::NotImplementedException();
-	// TODO: insérer une instruction return ici
+    return "SELECT "
+        "S.id_stock, "
+        "A.art_designation AS designation_article, "
+        "S.sto_quantite AS quantite_stock, "
+        "P.pri_prix AS prix_achat_unitaire, "
+        "S.sto_quantite * P.pri_prix AS valeur_achat_stock "
+        "FROM STOCK S "
+        "JOIN stocker ST ON S.id_stock = ST.id_stock "
+        "JOIN ARTICLES A ON ST.Id_Article = A.Id_Article "
+        "JOIN posseder Po ON A.Id_Article = Po.Id_Article "
+        "JOIN PRIX P ON Po.id_prix = P.id_prix "
+        "WHERE S.id_stock = " + System::Convert::ToString(this->id_stock);
+
 }
 
 System::String^ NS_Comp_MappageStatistiques::statistiques::totalValeurCommercialeStock(void)
 {
-	throw gcnew System::NotImplementedException();
-	// TODO: insérer une instruction return ici
+    return "SELECT "
+        "S.id_stock, "
+        "A.art_designation AS designation_article, "
+        "S.sto_quantite AS quantite_stock, "
+        "P.pri_prix AS prix_achat_unitaire, "
+        "S.sto_quantite * P.pri_prix *( 1+S.sto_pourcentage )AS valeur_achat_stock "
+        "FROM STOCK S "
+        "JOIN stocker ST ON S.id_stock = ST.id_stock "
+        "JOIN ARTICLES A ON ST.Id_Article = A.Id_Article "
+        "JOIN posseder Po ON A.Id_Article = Po.Id_Article "
+        "JOIN PRIX P ON Po.id_prix = P.id_prix "
+        "WHERE S.id_stock = " + System::Convert::ToString(this->id_stock);
+
+
+
 }
 
 System::String^ NS_Comp_MappageStatistiques::statistiques::SimulerVariationValeurCommercialeStock(void)
