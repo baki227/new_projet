@@ -135,15 +135,19 @@ System::String^ NS_Comp_MappageStatistiques::statistiques::totalValeurAchatStock
     return "SELECT "
         "S.id_stock, "
         "A.art_designation AS designation_article, "
-        "S.sto_quantite AS quantite_stock, "
+        "ST.stock_nombre AS quantite_stock, "
         "P.pri_prix AS prix_achat_unitaire, "
-        "S.sto_quantite * P.pri_prix AS valeur_achat_stock "
-        "FROM STOCK S "
+        "ST.stock_nombre * P.pri_prix AS valeur_achat_stock, "
+        "SUM(ST.stock_nombre * P.pri_prix) OVER (PARTITION BY S.id_stock) AS somme_valeur_achat_stock "
+        "FROM "
+        "STOCK S "
         "JOIN stocker ST ON S.id_stock = ST.id_stock "
         "JOIN ARTICLES A ON ST.Id_Article = A.Id_Article "
         "JOIN posseder Po ON A.Id_Article = Po.Id_Article "
         "JOIN PRIX P ON Po.id_prix = P.id_prix "
-        "WHERE S.id_stock = " + System::Convert::ToString(this->id_stock);
+        "WHERE "
+        "S.id_stock = " + System::Convert::ToString(this->id_stock) + ";";
+
 
 }
 

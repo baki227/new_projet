@@ -24,7 +24,27 @@ namespace POOP6 {
 			//
 		}
 	private: NS_Comp_Svc::CLservices_Statistiques^ oSvc; //oublie pas ------------------------------------
-	private: System::Windows::Forms::Button^ button10;
+
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::RadioButton^ radioButton3;
+	private: System::Windows::Forms::RadioButton^ radioButton2;
+	private: System::Windows::Forms::RadioButton^ radioButton1;
+	private: System::Windows::Forms::Panel^ panel2;
+	private: System::Windows::Forms::RadioButton^ radioButton4;
+	private: System::Windows::Forms::RadioButton^ radioButton5;
+	private: System::Windows::Forms::RadioButton^ radioButton6;
+	private: System::Windows::Forms::Panel^ panel3;
+	private: System::Windows::Forms::RadioButton^ radioButton7;
+	private: System::Windows::Forms::RadioButton^ radioButton8;
+	private: System::Windows::Forms::RadioButton^ radioButton9;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::Panel^ panel4;
+	private: System::Windows::Forms::RadioButton^ radioButton10;
+	private: System::Windows::Forms::RadioButton^ radioButton11;
+	private: System::Windows::Forms::RadioButton^ radioButton12;
 	private: System::Data::DataSet^ oDs;////oublie pas ------------------------------------
 	protected:
 		/// <summary>
@@ -83,8 +103,31 @@ namespace POOP6 {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button9 = (gcnew System::Windows::Forms::Button());
-			this->button10 = (gcnew System::Windows::Forms::Button());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton5 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton6 = (gcnew System::Windows::Forms::RadioButton());
+			this->panel3 = (gcnew System::Windows::Forms::Panel());
+			this->radioButton7 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton8 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton9 = (gcnew System::Windows::Forms::RadioButton());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->panel4 = (gcnew System::Windows::Forms::Panel());
+			this->radioButton10 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton11 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton12 = (gcnew System::Windows::Forms::RadioButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			this->panel1->SuspendLayout();
+			this->panel2->SuspendLayout();
+			this->panel3->SuspendLayout();
+			this->panel4->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// dataGridView1
@@ -185,7 +228,7 @@ namespace POOP6 {
 			// 
 			// button7
 			// 
-			this->button7->Location = System::Drawing::Point(644, 732);
+			this->button7->Location = System::Drawing::Point(619, 729);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(230, 79);
 			this->button7->TabIndex = 38;
@@ -195,7 +238,7 @@ namespace POOP6 {
 			// 
 			// button8
 			// 
-			this->button8->Location = System::Drawing::Point(644, 832);
+			this->button8->Location = System::Drawing::Point(518, 850);
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(305, 77);
 			this->button8->TabIndex = 39;
@@ -205,7 +248,7 @@ namespace POOP6 {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(926, 747);
+			this->textBox2->Location = System::Drawing::Point(926, 705);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(100, 26);
 			this->textBox2->TabIndex = 40;
@@ -213,7 +256,7 @@ namespace POOP6 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(927, 719);
+			this->label2->Location = System::Drawing::Point(922, 680);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(68, 20);
 			this->label2->TabIndex = 41;
@@ -229,21 +272,228 @@ namespace POOP6 {
 				L"ck";
 			this->button9->UseVisualStyleBackColor = true;
 			// 
-			// button10
+			// panel1
 			// 
-			this->button10->Location = System::Drawing::Point(859, 351);
-			this->button10->Name = L"button10";
-			this->button10->Size = System::Drawing::Size(75, 23);
-			this->button10->TabIndex = 43;
-			this->button10->Text = L"button10";
-			this->button10->UseVisualStyleBackColor = true;
+			this->panel1->Controls->Add(this->radioButton3);
+			this->panel1->Controls->Add(this->radioButton2);
+			this->panel1->Controls->Add(this->radioButton1);
+			this->panel1->Location = System::Drawing::Point(1093, 705);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(425, 51);
+			this->panel1->TabIndex = 44;
+			// 
+			// radioButton1
+			// 
+			this->radioButton1->AutoSize = true;
+			this->radioButton1->Location = System::Drawing::Point(17, 10);
+			this->radioButton1->Name = L"radioButton1";
+			this->radioButton1->Size = System::Drawing::Size(126, 24);
+			this->radioButton1->TabIndex = 0;
+			this->radioButton1->TabStop = true;
+			this->radioButton1->Text = L"radioButton1";
+			this->radioButton1->UseVisualStyleBackColor = true;
+			this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &MyFormGestionStatistique::radioButton1_CheckedChanged);
+			// 
+			// radioButton2
+			// 
+			this->radioButton2->AutoSize = true;
+			this->radioButton2->Location = System::Drawing::Point(149, 10);
+			this->radioButton2->Name = L"radioButton2";
+			this->radioButton2->Size = System::Drawing::Size(126, 24);
+			this->radioButton2->TabIndex = 1;
+			this->radioButton2->TabStop = true;
+			this->radioButton2->Text = L"radioButton2";
+			this->radioButton2->UseVisualStyleBackColor = true;
+			// 
+			// radioButton3
+			// 
+			this->radioButton3->AutoSize = true;
+			this->radioButton3->Location = System::Drawing::Point(281, 10);
+			this->radioButton3->Name = L"radioButton3";
+			this->radioButton3->Size = System::Drawing::Size(126, 24);
+			this->radioButton3->TabIndex = 2;
+			this->radioButton3->TabStop = true;
+			this->radioButton3->Text = L"radioButton3";
+			this->radioButton3->UseVisualStyleBackColor = true;
+			// 
+			// panel2
+			// 
+			this->panel2->Controls->Add(this->radioButton4);
+			this->panel2->Controls->Add(this->radioButton5);
+			this->panel2->Controls->Add(this->radioButton6);
+			this->panel2->Location = System::Drawing::Point(1093, 762);
+			this->panel2->Name = L"panel2";
+			this->panel2->Size = System::Drawing::Size(425, 51);
+			this->panel2->TabIndex = 45;
+			// 
+			// radioButton4
+			// 
+			this->radioButton4->AutoSize = true;
+			this->radioButton4->Location = System::Drawing::Point(281, 10);
+			this->radioButton4->Name = L"radioButton4";
+			this->radioButton4->Size = System::Drawing::Size(126, 24);
+			this->radioButton4->TabIndex = 2;
+			this->radioButton4->TabStop = true;
+			this->radioButton4->Text = L"radioButton4";
+			this->radioButton4->UseVisualStyleBackColor = true;
+			// 
+			// radioButton5
+			// 
+			this->radioButton5->AutoSize = true;
+			this->radioButton5->Location = System::Drawing::Point(149, 10);
+			this->radioButton5->Name = L"radioButton5";
+			this->radioButton5->Size = System::Drawing::Size(126, 24);
+			this->radioButton5->TabIndex = 1;
+			this->radioButton5->TabStop = true;
+			this->radioButton5->Text = L"radioButton5";
+			this->radioButton5->UseVisualStyleBackColor = true;
+			// 
+			// radioButton6
+			// 
+			this->radioButton6->AutoSize = true;
+			this->radioButton6->Location = System::Drawing::Point(17, 10);
+			this->radioButton6->Name = L"radioButton6";
+			this->radioButton6->Size = System::Drawing::Size(126, 24);
+			this->radioButton6->TabIndex = 0;
+			this->radioButton6->TabStop = true;
+			this->radioButton6->Text = L"radioButton6";
+			this->radioButton6->UseVisualStyleBackColor = true;
+			// 
+			// panel3
+			// 
+			this->panel3->Controls->Add(this->radioButton7);
+			this->panel3->Controls->Add(this->radioButton8);
+			this->panel3->Controls->Add(this->radioButton9);
+			this->panel3->Location = System::Drawing::Point(1093, 819);
+			this->panel3->Name = L"panel3";
+			this->panel3->Size = System::Drawing::Size(425, 51);
+			this->panel3->TabIndex = 46;
+			// 
+			// radioButton7
+			// 
+			this->radioButton7->AutoSize = true;
+			this->radioButton7->Location = System::Drawing::Point(281, 10);
+			this->radioButton7->Name = L"radioButton7";
+			this->radioButton7->Size = System::Drawing::Size(126, 24);
+			this->radioButton7->TabIndex = 2;
+			this->radioButton7->TabStop = true;
+			this->radioButton7->Text = L"radioButton7";
+			this->radioButton7->UseVisualStyleBackColor = true;
+			// 
+			// radioButton8
+			// 
+			this->radioButton8->AutoSize = true;
+			this->radioButton8->Location = System::Drawing::Point(149, 10);
+			this->radioButton8->Name = L"radioButton8";
+			this->radioButton8->Size = System::Drawing::Size(126, 24);
+			this->radioButton8->TabIndex = 1;
+			this->radioButton8->TabStop = true;
+			this->radioButton8->Text = L"radioButton8";
+			this->radioButton8->UseVisualStyleBackColor = true;
+			// 
+			// radioButton9
+			// 
+			this->radioButton9->AutoSize = true;
+			this->radioButton9->Location = System::Drawing::Point(17, 10);
+			this->radioButton9->Name = L"radioButton9";
+			this->radioButton9->Size = System::Drawing::Size(126, 24);
+			this->radioButton9->TabIndex = 0;
+			this->radioButton9->TabStop = true;
+			this->radioButton9->Text = L"radioButton9";
+			this->radioButton9->UseVisualStyleBackColor = true;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(1036, 719);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(40, 20);
+			this->label3->TabIndex = 47;
+			this->label3->Text = L"TVA";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(931, 774);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(147, 20);
+			this->label4->TabIndex = 48;
+			this->label4->Text = L"marge commerciale";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(929, 831);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(149, 20);
+			this->label5->TabIndex = 49;
+			this->label5->Text = L"remise commericale";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(937, 886);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(150, 20);
+			this->label6->TabIndex = 50;
+			this->label6->Text = L"démarque inconnue";
+			// 
+			// panel4
+			// 
+			this->panel4->Controls->Add(this->radioButton10);
+			this->panel4->Controls->Add(this->radioButton11);
+			this->panel4->Controls->Add(this->radioButton12);
+			this->panel4->Location = System::Drawing::Point(1093, 876);
+			this->panel4->Name = L"panel4";
+			this->panel4->Size = System::Drawing::Size(425, 51);
+			this->panel4->TabIndex = 47;
+			// 
+			// radioButton10
+			// 
+			this->radioButton10->AutoSize = true;
+			this->radioButton10->Location = System::Drawing::Point(281, 10);
+			this->radioButton10->Name = L"radioButton10";
+			this->radioButton10->Size = System::Drawing::Size(135, 24);
+			this->radioButton10->TabIndex = 2;
+			this->radioButton10->TabStop = true;
+			this->radioButton10->Text = L"radioButton10";
+			this->radioButton10->UseVisualStyleBackColor = true;
+			// 
+			// radioButton11
+			// 
+			this->radioButton11->AutoSize = true;
+			this->radioButton11->Location = System::Drawing::Point(149, 10);
+			this->radioButton11->Name = L"radioButton11";
+			this->radioButton11->Size = System::Drawing::Size(135, 24);
+			this->radioButton11->TabIndex = 1;
+			this->radioButton11->TabStop = true;
+			this->radioButton11->Text = L"radioButton11";
+			this->radioButton11->UseVisualStyleBackColor = true;
+			// 
+			// radioButton12
+			// 
+			this->radioButton12->AutoSize = true;
+			this->radioButton12->Location = System::Drawing::Point(17, 10);
+			this->radioButton12->Name = L"radioButton12";
+			this->radioButton12->Size = System::Drawing::Size(135, 24);
+			this->radioButton12->TabIndex = 0;
+			this->radioButton12->TabStop = true;
+			this->radioButton12->Text = L"radioButton12";
+			this->radioButton12->UseVisualStyleBackColor = true;
 			// 
 			// MyFormGestionStatistique
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1591, 969);
-			this->Controls->Add(this->button10);
+			this->Controls->Add(this->panel4);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->panel3);
+			this->Controls->Add(this->panel2);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->button9);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->textBox2);
@@ -262,6 +512,14 @@ namespace POOP6 {
 			this->Name = L"MyFormGestionStatistique";
 			this->Text = L"MyFormGestionStatistique";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
+			this->panel2->ResumeLayout(false);
+			this->panel2->PerformLayout();
+			this->panel3->ResumeLayout(false);
+			this->panel3->PerformLayout();
+			this->panel4->ResumeLayout(false);
+			this->panel4->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -336,6 +594,8 @@ private: System::Void totalValeurCommercialeStock_Click(System::Object^ sender, 
 	this->oDs = this->oSvc->ServicetotalValeurCommercialeStock("Rsl", id);
 	this->dataGridView1->DataSource = this->oDs;
 	this->dataGridView1->DataMember = "Rsl";
+}
+private: System::Void radioButton1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
