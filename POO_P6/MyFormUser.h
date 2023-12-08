@@ -251,6 +251,7 @@ namespace POOP6 {
 			// 
 			// comboBox2
 			// 
+			this->comboBox2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox2->FormattingEnabled = true;
 			this->comboBox2->Location = System::Drawing::Point(25, 377);
 			this->comboBox2->Name = L"comboBox2";
