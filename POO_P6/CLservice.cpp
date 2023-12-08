@@ -256,3 +256,14 @@ System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServicetotalValeurC
 	System::String^ sql = this->oMappStatistiques->totalValeurCommercialeStock();
 	return this->oCad->getRows(sql, dataTableName);
 }
+
+System::Data::DataSet^ NS_Comp_Svc::CLservices_Statistiques::ServicetotalSimulationValeurCommercialeStock(System::String^ dataTableName, int id, System::String^ tva, System::String^ remise, System::String^ marge, System::String^ demarche)
+{
+	this->oMappStatistiques->set_tva(tva);
+	this->oMappStatistiques->set_marge(marge);
+	this->oMappStatistiques->set_remise(remise);
+	this->oMappStatistiques->set_demarcheInconnue(demarche);
+	this->oMappStatistiques->set_Id_stock(id);
+	System::String^ sql = this->oMappStatistiques->SimulerVariationValeurCommercialeStock();
+	return this->oCad->getRows(sql, dataTableName);
+}

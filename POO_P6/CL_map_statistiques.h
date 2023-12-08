@@ -5,7 +5,10 @@ namespace NS_Comp_MappageStatistiques
 {
 	ref class statistiques {
 	private:
-		
+		System::String^ tva;
+		System::String^ marge;
+		System::String^ remise;
+		System::String^ demarcheInconnue;
 		int Id_Client;
 		System::String^ com_datePaiement;
 		int id_stock;
@@ -25,7 +28,12 @@ namespace NS_Comp_MappageStatistiques
 		System::String^ get_com_datePaiement(void);
 		int get_id_stock(void);
 		//set
-	
+		
+		void set_tva(System::String^);
+		void set_marge(System::String^);
+		void set_remise(System::String^);
+		void set_demarcheInconnue(System::String^);
+
 		void set_Id_Client(int);
 	
 		void set_com_datePaiement(System::String^);

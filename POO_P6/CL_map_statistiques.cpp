@@ -15,6 +15,26 @@ int NS_Comp_MappageStatistiques::statistiques::get_id_stock(void)
 	return this->id_stock;
 }
 
+void NS_Comp_MappageStatistiques::statistiques::set_tva(System::String^ tva)
+{
+    this->tva = tva;
+}
+
+void NS_Comp_MappageStatistiques::statistiques::set_marge(System::String^ marge)
+{
+    this->marge = marge;
+}
+
+void NS_Comp_MappageStatistiques::statistiques::set_remise(System::String^ remise)
+{
+    this->remise = remise;
+}
+
+void NS_Comp_MappageStatistiques::statistiques::set_demarcheInconnue(System::String^ demarche)
+{
+    this->demarcheInconnue = demarche;
+}
+
 void NS_Comp_MappageStatistiques::statistiques::set_Id_Client(int id)
 {
 	 this->Id_Client= id;
@@ -190,6 +210,30 @@ System::String^ NS_Comp_MappageStatistiques::statistiques::totalValeurCommercial
 
 System::String^ NS_Comp_MappageStatistiques::statistiques::SimulerVariationValeurCommercialeStock(void)
 {
-	throw gcnew System::NotImplementedException();
-	// TODO: insérer une instruction return ici
+    return
+        "DECLARE @tva DECIMAL(18, 2) = "+this->tva+";"
+        " DECLARE @remise DECIMAL(18, 2) =  " + this->remise + ";"
+        " DECLARE @marge DECIMAL(18, 2) =  " + this->marge + ";"
+        " DECLARE @demarqueInconnue DECIMAL(18, 2) =  " + this->demarcheInconnue + ";"
+        " SELECT"
+        "   S.id_stock,"
+        "   A.art_designation AS designation_article,"
+        "   ST.stock_nombre AS quantite_stock,"
+        "   P.pri_prix AS prix_achat_unitaire,"
+        "   ST.stock_nombre * P.pri_prix AS valeur_achat_stock,"
+        "   SUM(ST.stock_nombre * P.pri_prix) OVER(PARTITION BY S.id_stock) AS somme_valeur_achat_stock,"
+        "   SUM((SUM(ST.stock_nombre * P.pri_prix) * @marge * @tva) - (SUM(ST.stock_nombre * P.pri_prix) * @remise) - (SUM(ST.stock_nombre * P.pri_prix) * @demarqueInconnue)) OVER(PARTITION BY S.id_stock) AS totale_Valeur_commerciale"
+        " FROM"
+        "   STOCK S"
+        "   JOIN"
+        "   stocker ST ON S.id_stock = ST.id_stock"
+        "   JOIN"
+        "   ARTICLES A ON ST.Id_Article = A.Id_Article"
+        "   JOIN"
+        "   posseder Po ON A.Id_Article = Po.Id_Article"
+        "   JOIN"
+        "   PRIX P ON Po.id_prix = P.id_prix"
+        " WHERE S.id_stock = " + System::Convert::ToString(this->id_stock) +
+        " GROUP BY"
+        "   S.id_stock, A.art_designation, ST.stock_nombre, P.pri_prix;";
 }
