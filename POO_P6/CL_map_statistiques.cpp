@@ -39,19 +39,24 @@ System::String^ NS_Comp_MappageStatistiques::statistiques::produitsSousSueilReap
 {
 	return R"(
 SELECT
-    A.Id_Article,
-    A.art_designation,
-    S.sto_quantite,
-    S.sto_seuilReapprovis,
-    (S.sto_quantite * 100 / S.sto_seuilReapprovis) AS pourcentage_stock
+    S.id_stock,
+    A.art_designation AS designation_article,
+    ST.stock_nombre AS quantite_stock,
+    P.pri_prix AS prix_achat_unitaire,
+    ST.stock_nombre * P.pri_prix AS valeur_achat_stock
 FROM
-    ARTICLES A
+    STOCK S
 JOIN
-    stocker ST ON A.Id_Article = ST.Id_Article
+    stocker ST ON S.id_stock = ST.id_stock
 JOIN
-    STOCK S ON ST.id_stock = S.id_stock
+    ARTICLES A ON ST.Id_Article = A.Id_Article
+JOIN
+    posseder Po ON A.Id_Article = Po.Id_Article
+JOIN
+    PRIX P ON Po.id_prix = P.id_prix
 WHERE
-    S.sto_quantite < S.sto_seuilReapprovis;
+    ST.stock_nombre < sto_seuilReapprovis;
+
 
 
         )";
@@ -153,19 +158,32 @@ System::String^ NS_Comp_MappageStatistiques::statistiques::totalValeurAchatStock
 
 System::String^ NS_Comp_MappageStatistiques::statistiques::totalValeurCommercialeStock(void)
 {
-    return "SELECT "
-        "S.id_stock, "
-        "A.art_designation AS designation_article, "
-        "S.sto_quantite AS quantite_stock, "
-        "P.pri_prix AS prix_achat_unitaire, "
-        "S.sto_quantite * P.pri_prix *( 1+S.sto_pourcentage )AS valeur_achat_stock "
-        "FROM STOCK S "
-        "JOIN stocker ST ON S.id_stock = ST.id_stock "
-        "JOIN ARTICLES A ON ST.Id_Article = A.Id_Article "
-        "JOIN posseder Po ON A.Id_Article = Po.Id_Article "
-        "JOIN PRIX P ON Po.id_prix = P.id_prix "
-        "WHERE S.id_stock = " + System::Convert::ToString(this->id_stock);
-
+    return
+        "DECLARE @tva DECIMAL(18, 2) = 1.2;"
+        " DECLARE @remise DECIMAL(18, 2) = 0.05;"
+        " DECLARE @marge DECIMAL(18, 2) = 1.05;"
+        " DECLARE @demarqueInconnue DECIMAL(18, 2) = 0.02;"
+        " SELECT"
+        "   S.id_stock,"
+        "   A.art_designation AS designation_article,"
+        "   ST.stock_nombre AS quantite_stock,"
+        "   P.pri_prix AS prix_achat_unitaire,"
+        "   ST.stock_nombre * P.pri_prix AS valeur_achat_stock,"
+        "   SUM(ST.stock_nombre * P.pri_prix) OVER(PARTITION BY S.id_stock) AS somme_valeur_achat_stock,"
+        "   SUM((SUM(ST.stock_nombre * P.pri_prix) * @marge * @tva) - (SUM(ST.stock_nombre * P.pri_prix) * @remise) - (SUM(ST.stock_nombre * P.pri_prix) * @demarqueInconnue)) OVER(PARTITION BY S.id_stock) AS totale_Valeur_commerciale"
+        " FROM"
+        "   STOCK S"
+        "   JOIN"
+        "   stocker ST ON S.id_stock = ST.id_stock"
+        "   JOIN"
+        "   ARTICLES A ON ST.Id_Article = A.Id_Article"
+        "   JOIN"
+        "   posseder Po ON A.Id_Article = Po.Id_Article"
+        "   JOIN"
+        "   PRIX P ON Po.id_prix = P.id_prix"
+        " WHERE S.id_stock = " + System::Convert::ToString(this->id_stock) +
+        " GROUP BY"
+        "   S.id_stock, A.art_designation, ST.stock_nombre, P.pri_prix;";
 
 
 }

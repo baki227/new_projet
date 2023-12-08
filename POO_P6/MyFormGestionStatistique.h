@@ -104,9 +104,9 @@ namespace POOP6 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button9 = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton5 = (gcnew System::Windows::Forms::RadioButton());
@@ -228,7 +228,7 @@ namespace POOP6 {
 			// 
 			// button7
 			// 
-			this->button7->Location = System::Drawing::Point(619, 729);
+			this->button7->Location = System::Drawing::Point(619, 848);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(230, 79);
 			this->button7->TabIndex = 38;
@@ -238,7 +238,7 @@ namespace POOP6 {
 			// 
 			// button8
 			// 
-			this->button8->Location = System::Drawing::Point(518, 850);
+			this->button8->Location = System::Drawing::Point(565, 719);
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(305, 77);
 			this->button8->TabIndex = 39;
@@ -264,7 +264,7 @@ namespace POOP6 {
 			// 
 			// button9
 			// 
-			this->button9->Location = System::Drawing::Point(1186, 324);
+			this->button9->Location = System::Drawing::Point(1242, 569);
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(147, 102);
 			this->button9->TabIndex = 42;
@@ -282,17 +282,16 @@ namespace POOP6 {
 			this->panel1->Size = System::Drawing::Size(425, 51);
 			this->panel1->TabIndex = 44;
 			// 
-			// radioButton1
+			// radioButton3
 			// 
-			this->radioButton1->AutoSize = true;
-			this->radioButton1->Location = System::Drawing::Point(17, 10);
-			this->radioButton1->Name = L"radioButton1";
-			this->radioButton1->Size = System::Drawing::Size(126, 24);
-			this->radioButton1->TabIndex = 0;
-			this->radioButton1->TabStop = true;
-			this->radioButton1->Text = L"radioButton1";
-			this->radioButton1->UseVisualStyleBackColor = true;
-			this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &MyFormGestionStatistique::radioButton1_CheckedChanged);
+			this->radioButton3->AutoSize = true;
+			this->radioButton3->Location = System::Drawing::Point(281, 10);
+			this->radioButton3->Name = L"radioButton3";
+			this->radioButton3->Size = System::Drawing::Size(126, 24);
+			this->radioButton3->TabIndex = 2;
+			this->radioButton3->TabStop = true;
+			this->radioButton3->Text = L"radioButton3";
+			this->radioButton3->UseVisualStyleBackColor = true;
 			// 
 			// radioButton2
 			// 
@@ -305,16 +304,17 @@ namespace POOP6 {
 			this->radioButton2->Text = L"radioButton2";
 			this->radioButton2->UseVisualStyleBackColor = true;
 			// 
-			// radioButton3
+			// radioButton1
 			// 
-			this->radioButton3->AutoSize = true;
-			this->radioButton3->Location = System::Drawing::Point(281, 10);
-			this->radioButton3->Name = L"radioButton3";
-			this->radioButton3->Size = System::Drawing::Size(126, 24);
-			this->radioButton3->TabIndex = 2;
-			this->radioButton3->TabStop = true;
-			this->radioButton3->Text = L"radioButton3";
-			this->radioButton3->UseVisualStyleBackColor = true;
+			this->radioButton1->AutoSize = true;
+			this->radioButton1->Location = System::Drawing::Point(17, 10);
+			this->radioButton1->Name = L"radioButton1";
+			this->radioButton1->Size = System::Drawing::Size(126, 24);
+			this->radioButton1->TabIndex = 0;
+			this->radioButton1->TabStop = true;
+			this->radioButton1->Text = L"radioButton1";
+			this->radioButton1->UseVisualStyleBackColor = true;
+			this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &MyFormGestionStatistique::radioButton1_CheckedChanged);
 			// 
 			// panel2
 			// 
@@ -414,7 +414,7 @@ namespace POOP6 {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(931, 774);
+			this->label4->Location = System::Drawing::Point(929, 776);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(147, 20);
 			this->label4->TabIndex = 48;
@@ -423,7 +423,7 @@ namespace POOP6 {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(929, 831);
+			this->label5->Location = System::Drawing::Point(929, 833);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(149, 20);
 			this->label5->TabIndex = 49;
@@ -432,7 +432,7 @@ namespace POOP6 {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(937, 886);
+			this->label6->Location = System::Drawing::Point(922, 888);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(150, 20);
 			this->label6->TabIndex = 50;
@@ -583,7 +583,7 @@ private: System::Void TotalValeurAchatStock_Click(System::Object^ sender, System
 	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
 	this->dataGridView1->Refresh();
 	int id = Convert::ToInt16(textBox2->Text);
-	this->oDs = this->oSvc->ServiceTotalValeurAchatStock("Rsl", id);
+	this->oDs = this->oSvc->ServicetotalValeurCommercialeStock("Rsl", id);
 	this->dataGridView1->DataSource = this->oDs;
 	this->dataGridView1->DataMember = "Rsl";
 }
@@ -591,7 +591,7 @@ private: System::Void totalValeurCommercialeStock_Click(System::Object^ sender, 
 	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
 	this->dataGridView1->Refresh();
 	int id = Convert::ToInt16(textBox2->Text);
-	this->oDs = this->oSvc->ServicetotalValeurCommercialeStock("Rsl", id);
+	this->oDs = this->oSvc->ServiceTotalValeurAchatStock("Rsl", id);
 	this->dataGridView1->DataSource = this->oDs;
 	this->dataGridView1->DataMember = "Rsl";
 }
