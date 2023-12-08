@@ -572,28 +572,47 @@ private: System::Void chiffreAffaireUnMois_Click(System::Object^ sender, System:
 private: System::Void totalAchatClient_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
 	this->dataGridView1->Refresh();
-	int id = Convert::ToInt16(textBox1->Text);
-	this->oDs = this->oSvc->ServiceTotalAchatClient("Rsl", id);
-	this->dataGridView1->DataSource = this->oDs;
-	this->dataGridView1->DataMember = "Rsl";
+	Int16 id;
 
+	if (Int16::TryParse(textBox1->Text, id)) {
+		int id = Convert::ToInt16(textBox1->Text);
+		this->oDs = this->oSvc->ServiceTotalAchatClient("Rsl", id);
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+	else {
+
+		MessageBox::Show("La valeur dans id_client n'est pas un entier valide.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 
 }
 private: System::Void TotalValeurAchatStock_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
 	this->dataGridView1->Refresh();
-	int id = Convert::ToInt16(textBox2->Text);
-	this->oDs = this->oSvc->ServicetotalValeurCommercialeStock("Rsl", id);
-	this->dataGridView1->DataSource = this->oDs;
-	this->dataGridView1->DataMember = "Rsl";
+	Int16 id;
+	if (Int16::TryParse(textBox2->Text, id)) {
+		int id = Convert::ToInt16(textBox2->Text);
+		this->oDs = this->oSvc->ServicetotalValeurCommercialeStock("Rsl", id);
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+	else {
+		MessageBox::Show("La valeur dans id_stock n'est pas un entier valide.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
 private: System::Void totalValeurCommercialeStock_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
 	this->dataGridView1->Refresh();
-	int id = Convert::ToInt16(textBox2->Text);
-	this->oDs = this->oSvc->ServiceTotalValeurAchatStock("Rsl", id);
-	this->dataGridView1->DataSource = this->oDs;
-	this->dataGridView1->DataMember = "Rsl";
+	Int16 id;
+	if (Int16::TryParse(textBox2->Text, id)) {
+		int id = Convert::ToInt16(textBox2->Text);
+		this->oDs = this->oSvc->ServiceTotalValeurAchatStock("Rsl", id);
+		this->dataGridView1->DataSource = this->oDs;
+		this->dataGridView1->DataMember = "Rsl";
+	}
+	else {
+		MessageBox::Show("La valeur dans id_stock n'est pas un entier valide.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
 private: System::Void radioButton1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	
@@ -604,52 +623,66 @@ private: System::Void simulation_Click(System::Object^ sender, System::EventArgs
 	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
 	this->dataGridView1->Refresh();
 
-	int id = Convert::ToInt16(textBox2->Text);
+	Int16 id;
+	if (Int16::TryParse(textBox2->Text, id)) {
+		int id = Convert::ToInt16(textBox2->Text);
+		String^ tva = "0.00"; // Utilisez String^ au lieu de string^ pour les chaînes en C++/CLI
+		String^ remise = "0.00";
+		String^ marge = "0.00";
+		String^ demarche = "0.00";
+		if (radioButton1->Checked) {
+			tva = "1.20"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton2->Checked) {
+			tva = "1.15"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton3->Checked) {
+			tva = "1.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton9->Checked) {
+			remise = "0.00"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton8->Checked) {
+			remise = "0.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton7->Checked) {
+			remise = "0.06"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton6->Checked) {
+			marge = "1.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton5->Checked) {
+			marge = "1.10"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton4->Checked) {
+			marge = "1.15"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton12->Checked) {
+			demarche = "0.02"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton11->Checked) {
+			demarche = "0.03"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (radioButton10->Checked) {
+			demarche = "0.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+		}
+		if (tva == "0.00" || marge == "0.00" || demarche == "0.00") {
+			MessageBox::Show("Veuillez sélectionner vos paramètres.", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		else {
+			this->oDs = this->oSvc->ServicetotalSimulationValeurCommercialeStock("Rsl", id, tva, remise, marge, demarche);
+			this->dataGridView1->DataSource = this->oDs;
+			this->dataGridView1->DataMember = "Rsl";
+
+		}
+
 	
-	String^ tva = "0.00"; // Utilisez String^ au lieu de string^ pour les chaînes en C++/CLI
-	String^ remise = "0.00";
-	String^ marge = "0.00";
-	String^ demarche = "0.00";
-	if (radioButton1->Checked) {
-		tva = "1.20"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
 	}
-	if (radioButton2->Checked) {
-		tva = "1.15"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-	}
-	if (radioButton3->Checked) {
-		tva = "1.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-	}
-	if (radioButton9->Checked) {
-		remise = "0.00"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-	}
-	if (radioButton8->Checked) {
-		remise = "0.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-	}
-	if (radioButton7->Checked) {
-		remise = "0.06"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-	}
-	if (radioButton6->Checked) {
-		marge = "1.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-	}
-	if (radioButton5->Checked) {
-		marge = "1.10"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-	}
-	if (radioButton4->Checked) {
-		marge = "1.15"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-	}
-	if (radioButton12->Checked) {
-		demarche = "0.02"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-	}
-	if (radioButton11->Checked) {
-		demarche = "0.03"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-	}
-	if (radioButton10->Checked) {
-		demarche = "0.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+	else {
+		MessageBox::Show("La valeur dans id_stock n'est pas un entier valide.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
 	
-	this->oDs = this->oSvc->ServicetotalSimulationValeurCommercialeStock("Rsl", id, tva , remise, marge, demarche);
-	this->dataGridView1->DataSource = this->oDs;
-	this->dataGridView1->DataMember = "Rsl";
+	
 }
 
 };

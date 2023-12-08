@@ -210,6 +210,7 @@ System::String^ NS_Comp_MappageStatistiques::statistiques::totalValeurCommercial
 
 System::String^ NS_Comp_MappageStatistiques::statistiques::SimulerVariationValeurCommercialeStock(void)
 {
+
     return
         "DECLARE @tva DECIMAL(18, 2) = "+this->tva+";"
         " DECLARE @remise DECIMAL(18, 2) =  " + this->remise + ";"
