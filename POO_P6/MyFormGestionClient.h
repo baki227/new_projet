@@ -187,6 +187,7 @@ namespace POOP6 {
 			this->dateTimePicker1->TabIndex = 27;
 			this->dateTimePicker1->Value = System::DateTime(2023, 12, 14, 0, 0, 0, 0);
 			this->dateTimePicker1->ValueChanged += gcnew System::EventHandler(this, &MyFormGestionClient::dateTimePicker1_ValueChanged);
+			
 			// 
 			// label1
 			// 
@@ -214,7 +215,7 @@ namespace POOP6 {
 			this->label2->Size = System::Drawing::Size(63, 20);
 			this->label2->TabIndex = 31;
 			this->label2->Text = L"prenom";
-			this->label2->Click += gcnew System::EventHandler(this, &MyFormGestionClient::label2_Click);
+
 			// 
 			// textBox2
 			// 
@@ -301,14 +302,11 @@ namespace POOP6 {
 			// comboBox4
 			// 
 			this->comboBox4->FormattingEnabled = true;
-			this->comboBox4->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"France" });
+			this->comboBox4->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"France", L"France" });
 			this->comboBox4->Location = System::Drawing::Point(811, 492);
 			this->comboBox4->Name = L"comboBox4";
 			this->comboBox4->Size = System::Drawing::Size(97, 28);
 			this->comboBox4->TabIndex = 40;
-			this->comboBox4->Items->AddRange(gcnew cli::array< System::Object^  >(1) {
-				L"France"
-			});
 			// 
 			// label11
 			// 
@@ -342,6 +340,7 @@ namespace POOP6 {
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(100, 26);
 			this->textBox5->TabIndex = 44;
+
 			// 
 			// label12
 			// 
@@ -360,7 +359,6 @@ namespace POOP6 {
 			this->textBox4->Size = System::Drawing::Size(53, 26);
 			this->textBox4->TabIndex = 46;
 			this->textBox4->Visible = false;
-
 			// 
 			// MyFormGestionClient
 			// 
@@ -457,22 +455,56 @@ namespace POOP6 {
 	}
 	
 	private: System::Void btn_delete_click(System::Object^ sender, System::EventArgs^ e) {
-		int id = Convert::ToInt32(this->textBox1->Text);
-		this->oSvc->deleteUnClient(id);
+		Int32 id; 
+		if (Int32::TryParse(textBox5->Text, id)) {
+			this->oSvc->deleteUnClient(id);
+		}
+		else {
+			MessageBox::Show("La valeur dans id_client n'est pas un entier valide.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+
 	}
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->oSvc->insererUnClient(textBox1->Text, textBox2->Text, dateTimePicker1->Text, textBox7->Text, textBox3->Text, comboBox3->Text, textBox4->Text, comboBox2->Text, comboBox1->Text, comboBox4->Text);
+
+	if (AreTextBoxesNotEmpty()) {
+
+		this->oSvc->insererUnClient(textBox1->Text, textBox2->Text, dateTimePicker1->Text, textBox7->Text, textBox3->Text, comboBox3->Text, textBox4->Text, comboBox2->Text, comboBox1->Text, comboBox4->Text);
+	}
+	else {
+		
+		MessageBox::Show("Veuillez remplir tous les champs.", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
+
+	   bool AreTextBoxesNotEmpty() {
+		   return !String::IsNullOrWhiteSpace(textBox1->Text) &&
+			   !String::IsNullOrWhiteSpace(textBox2->Text) &&
+			   !String::IsNullOrWhiteSpace(dateTimePicker1->Text) &&
+			   !String::IsNullOrWhiteSpace(textBox7->Text) &&
+			   !String::IsNullOrWhiteSpace(textBox3->Text) &&
+			   !String::IsNullOrWhiteSpace(comboBox3->Text) &&
+			   !String::IsNullOrWhiteSpace(comboBox2->Text) &&
+			   !String::IsNullOrWhiteSpace(comboBox1->Text) &&
+			   !String::IsNullOrWhiteSpace(comboBox4->Text);
+	   }
+
 private: System::Void dateTimePicker1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void modifier_Click(System::Object^ sender, System::EventArgs^ e) {
-	int id = Convert::ToInt32(textBox5->Text);
-	this->oSvc->modifierUnClient(id, textBox1->Text, textBox2->Text, dateTimePicker1->Text, textBox7->Text, textBox3->Text, comboBox3->Text, textBox4->Text, comboBox2->Text, comboBox1->Text, comboBox4->Text);
+	Int32 id;
+	if (Int32::TryParse(textBox5->Text, id)) {
+		if (AreTextBoxesNotEmpty()) {
+			this->oSvc->modifierUnClient(id, textBox1->Text, textBox2->Text, dateTimePicker1->Text, textBox7->Text, textBox3->Text, comboBox3->Text, textBox4->Text, comboBox2->Text, comboBox1->Text, comboBox4->Text);
+		}
+		else {
+			MessageBox::Show("Veuillez remplir tous les champs.", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+	else {
+		MessageBox::Show("La valeur dans id_client n'est pas un entier valide.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
-private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-
 };
 }

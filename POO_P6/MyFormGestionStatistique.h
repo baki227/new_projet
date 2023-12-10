@@ -626,7 +626,7 @@ private: System::Void simulation_Click(System::Object^ sender, System::EventArgs
 	Int16 id;
 	if (Int16::TryParse(textBox2->Text, id)) {
 		int id = Convert::ToInt16(textBox2->Text);
-		String^ tva = "0.00"; // Utilisez String^ au lieu de string^ pour les chaînes en C++/CLI
+		String^ tva = "0.00"; 
 		String^ remise = "0.00";
 		String^ marge = "0.00";
 		String^ demarche = "0.00";

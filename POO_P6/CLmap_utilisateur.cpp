@@ -157,12 +157,20 @@ System::String^ NS_Comp_MappageUtilisateur::utilisateur::Insert(void)
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::Delete(void)
 {
-	return "DELETE FROM [projetPOO].[dbo].[CLIENTS] WHERE Id_Client = " + this->Id_Client + ";";
+	
+
+	return "DECLARE @Id_ClientToDelete INT = ' " + this->Id_Client + "' ;"
+		+ "DELETE FROM CONTENIR WHERE Id_Commande IN(SELECT Id_Commande FROM COMMANDES WHERE Id_Client = @Id_ClientToDelete);"
+		+ "DELETE FROM COMMANDES WHERE Id_Client = @Id_ClientToDelete;"
+		+ "DELETE FROM CLIENTS WHERE Id_Client = @Id_ClientToDelete;";
+		
+		
 }
 
 System::String^ NS_Comp_MappageUtilisateur::utilisateur::Update(void)
 {
 	System::Text::StringBuilder^ sb = gcnew System::Text::StringBuilder();
+
 	sb->Append("DECLARE @ClientIdToUpdate INT = " + this->Id_Client + " ;");
 	sb->Append("UPDATE ADRESSE ");
 	sb->Append("SET ");

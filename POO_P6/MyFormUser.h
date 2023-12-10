@@ -440,4 +440,4 @@ private: System::Void ModifierClient_Click(System::Object^ sender, System::Event
 	this->oSvc->modifierUnClient(id, textBox1->Text, textBox2->Text, dateTimePicker1->Text, textBox7->Text, textBox3->Text, comboBox3->Text, textBox4->Text, comboBox2->Text, comboBox1->Text, comboBox4->Text);
 }
 };
-	}
+}

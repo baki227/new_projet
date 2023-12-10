@@ -352,7 +352,7 @@ namespace POOP6 {
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(455, 511);
+			this->label11->Location = System::Drawing::Point(447, 505);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(104, 20);
 			this->label11->TabIndex = 28;
@@ -506,6 +506,20 @@ namespace POOP6 {
 			System::Windows::Forms::MessageBox::Show("Erreur : " + ex->Message);
 		}
 	}
+		   bool AreTextBoxesNotEmpty() {
+			   return !String::IsNullOrWhiteSpace(textBox1->Text) &&
+				   !String::IsNullOrWhiteSpace(textBox2->Text) &&
+				   !String::IsNullOrWhiteSpace(dateTimePicker3->Text) &&
+				   !String::IsNullOrWhiteSpace(textBox3->Text) &&
+				   !String::IsNullOrWhiteSpace(textBox4->Text) &&
+				   !String::IsNullOrWhiteSpace(comboBox1->Text) &&
+				   !String::IsNullOrWhiteSpace(comboBox4->Text) &&
+				   !String::IsNullOrWhiteSpace(comboBox3->Text) &&
+				   !String::IsNullOrWhiteSpace(comboBox2->Text) &&
+				   !String::IsNullOrWhiteSpace(textBox6->Text) &&
+				   !String::IsNullOrWhiteSpace(textBox7->Text) &&
+				   !String::IsNullOrWhiteSpace(dateTimePicker1->Text);
+		   }
 	private: System::Void Load_database_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->dataGridView1->Refresh();
 		this->oDs = this->oSvc->selectionnerTousLePersonnel("Rsl");
@@ -515,17 +529,55 @@ namespace POOP6 {
 	private: System::Void dateTimePicker3_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void inserer_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->oSvc->insererUnPersonnel(textBox1->Text, textBox2->Text, dateTimePicker3->Text, textBox3->Text, textBox4->Text, comboBox1->Text, textBox8->Text, comboBox4->Text, comboBox3->Text, comboBox2->Text, textBox6->Text, textBox7->Text, dateTimePicker1->Text);
+	if (AreTextBoxesNotEmpty()) {
+		Int32 entierTextBox6;
+		Int32 entierTextBox7;
+
+		if (Int32::TryParse(textBox6->Text, entierTextBox6) && Int32::TryParse(textBox7->Text, entierTextBox7)) {
+			this->oSvc->insererUnPersonnel(textBox1->Text, textBox2->Text, dateTimePicker3->Text, textBox3->Text, textBox4->Text, comboBox1->Text, textBox8->Text, comboBox4->Text, comboBox3->Text, comboBox2->Text, entierTextBox6.ToString(), entierTextBox7.ToString(), dateTimePicker1->Text);
+		}
+		else {
+			MessageBox::Show("Les valeurs dans id_supérieur hiérarchique et/ou nivreau hiérarchique ne sont pas des entiers valides.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+	else {
+		MessageBox::Show("Veuillez remplir tous les champs.", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
+
 private: System::Void label14_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void modifier_Click(System::Object^ sender, System::EventArgs^ e) {
-	int id = Convert::ToInt32(textBox5->Text);
-	this->oSvc->modifierUnPersonnel(id, textBox1->Text, textBox2->Text, dateTimePicker3->Text, textBox3->Text, textBox4->Text, comboBox1->Text, textBox8->Text, comboBox4->Text, comboBox3->Text, comboBox2->Text, textBox6->Text, textBox7->Text, dateTimePicker1->Text);
+	if (AreTextBoxesNotEmpty()) {
+		Int32 id;
+		if (Int32::TryParse(textBox5->Text, id)) {
+
+			Int32 entierTextBox6;
+			Int32 entierTextBox7;
+
+			if (Int32::TryParse(textBox6->Text, entierTextBox6) && Int32::TryParse(textBox7->Text, entierTextBox7)) {
+				this->oSvc->modifierUnPersonnel(id, textBox1->Text, textBox2->Text, dateTimePicker3->Text, textBox3->Text, textBox4->Text, comboBox1->Text, textBox8->Text, comboBox4->Text, comboBox3->Text, comboBox2->Text, entierTextBox6.ToString(), entierTextBox7.ToString(), dateTimePicker1->Text);
+			}
+			else {
+				MessageBox::Show("Les valeurs dans id_supérieur hiérarchique et/ou nivreau hiérarchique ne sont pas des entiers valides.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+		}
+		else {
+			MessageBox::Show("La valeur dans id_personnel n'est pas un entier valide.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+	else {
+		MessageBox::Show("Veuillez remplir tous les champs.", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
 private: System::Void delete_Click(System::Object^ sender, System::EventArgs^ e) {
-	int id = Convert::ToInt32(textBox5->Text);
-	this->oSvc->deleteUnPersonnel(id);
+	Int32 id;
+	if (Int32::TryParse(textBox5->Text, id)) {
+		this->oSvc->deleteUnPersonnel(id);
+	}
+	else {
+		MessageBox::Show("La valeur dans id_personnel n'est pas un entier valide.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 }
 };
 }
