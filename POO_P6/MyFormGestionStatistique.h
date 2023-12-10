@@ -1,5 +1,7 @@
 #pragma once
 #include "CLservices.h"
+
+
 namespace POOP6 {
 
 	using namespace System;
@@ -618,72 +620,72 @@ private: System::Void radioButton1_CheckedChanged(System::Object^ sender, System
 	
 }
 
+	
+	private: System::Void simulation_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
+		this->dataGridView1->Refresh();
 
-private: System::Void simulation_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->oSvc = gcnew NS_Comp_Svc::CLservices_Statistiques();
-	this->dataGridView1->Refresh();
+		Int16 id;
+		if (Int16::TryParse(textBox2->Text, id)) {
+			int id = Convert::ToInt16(textBox2->Text);
+			String^ tva = "0.00";
+			String^ remise = "0.00";
+			String^ marge = "0.00";
+			String^ demarche = "0.00";
+			if (radioButton1->Checked) {
+				tva = "1.20"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton2->Checked) {
+				tva = "1.15"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton3->Checked) {
+				tva = "1.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton9->Checked) {
+				remise = "0.00"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton8->Checked) {
+				remise = "0.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton7->Checked) {
+				remise = "0.06"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton6->Checked) {
+				marge = "1.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton5->Checked) {
+				marge = "1.10"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton4->Checked) {
+				marge = "1.15"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton12->Checked) {
+				demarche = "0.02"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton11->Checked) {
+				demarche = "0.03"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (radioButton10->Checked) {
+				demarche = "0.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
+			}
+			if (tva == "0.00" || marge == "0.00" || demarche == "0.00") {
+				MessageBox::Show("Veuillez sélectionner vos paramètres.", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+			else {
 
-	Int16 id;
-	if (Int16::TryParse(textBox2->Text, id)) {
-		int id = Convert::ToInt16(textBox2->Text);
-		String^ tva = "0.00"; 
-		String^ remise = "0.00";
-		String^ marge = "0.00";
-		String^ demarche = "0.00";
-		if (radioButton1->Checked) {
-			tva = "1.20"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton2->Checked) {
-			tva = "1.15"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton3->Checked) {
-			tva = "1.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton9->Checked) {
-			remise = "0.00"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton8->Checked) {
-			remise = "0.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton7->Checked) {
-			remise = "0.06"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton6->Checked) {
-			marge = "1.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton5->Checked) {
-			marge = "1.10"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton4->Checked) {
-			marge = "1.15"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton12->Checked) {
-			demarche = "0.02"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton11->Checked) {
-			demarche = "0.03"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (radioButton10->Checked) {
-			demarche = "0.05"; // Assurez-vous que tva est une chaîne, donc vous devez utiliser des guillemets doubles
-		}
-		if (tva == "0.00" || marge == "0.00" || demarche == "0.00") {
-			MessageBox::Show("Veuillez sélectionner vos paramètres.", "Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error);
+
+
+				this->oDs = this->oSvc->ServicetotalSimulationValeurCommercialeStock("Rsl", id, tva, remise, marge, demarche);
+				this->dataGridView1->DataSource = this->oDs;
+				this->dataGridView1->DataMember = "Rsl";
+			}
+
+
 		}
 		else {
-			this->oDs = this->oSvc->ServicetotalSimulationValeurCommercialeStock("Rsl", id, tva, remise, marge, demarche);
-			this->dataGridView1->DataSource = this->oDs;
-			this->dataGridView1->DataMember = "Rsl";
-
+			MessageBox::Show("La valeur dans id_stock n'est pas un entier valide.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
-
-	
 	}
-	else {
-		MessageBox::Show("La valeur dans id_stock n'est pas un entier valide.", "Erreur de conversion", MessageBoxButtons::OK, MessageBoxIcon::Error);
-	}
-	
-	
-}
 
 };
 }

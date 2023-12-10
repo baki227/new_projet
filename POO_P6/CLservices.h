@@ -64,6 +64,7 @@ namespace NS_Comp_Svc
 		NS_Comp_MappageStatistiques::statistiques^ oMappStatistiques;
 
 	public:
+	
 		CLservices_Statistiques(void);
 		System::Data::DataSet^ Servicecalculerpaniermoyen(System::String^);
 		System::Data::DataSet^ ServiceproduitsSousSueilReaprovisionnement(System::String^);

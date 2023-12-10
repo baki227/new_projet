@@ -187,7 +187,6 @@ namespace POOP6 {
 			this->dateTimePicker1->TabIndex = 27;
 			this->dateTimePicker1->Value = System::DateTime(2023, 12, 14, 0, 0, 0, 0);
 			this->dateTimePicker1->ValueChanged += gcnew System::EventHandler(this, &MyFormGestionClient::dateTimePicker1_ValueChanged);
-			
 			// 
 			// label1
 			// 
@@ -215,7 +214,6 @@ namespace POOP6 {
 			this->label2->Size = System::Drawing::Size(63, 20);
 			this->label2->TabIndex = 31;
 			this->label2->Text = L"prenom";
-
 			// 
 			// textBox2
 			// 
@@ -234,7 +232,7 @@ namespace POOP6 {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(417, 380);
+			this->label5->Location = System::Drawing::Point(417, 389);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(63, 20);
 			this->label5->TabIndex = 33;
@@ -340,7 +338,6 @@ namespace POOP6 {
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(100, 26);
 			this->textBox5->TabIndex = 44;
-
 			// 
 			// label12
 			// 
